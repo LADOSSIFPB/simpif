@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Simpif Ladoss</string>
+
+    <string name="nao">Não</string>
+    <string name="sair">Sair</string>
+    <string name="sairconfirmation">Você deseja realmente sair?</string>
+
+    <string name="canceled">Checkin cancelado.</string>
+    <string name="scanning">Lendo QR-Code...</string>
+</resources>
