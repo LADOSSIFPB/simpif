@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">Simpif Ladoss</string>
 
-    <string name="nao">Não</string>
-    <string name="sair">Sair</string>
-    <string name="sairconfirmation">Você deseja realmente sair?</string>
+    <string name="no">Não</string>
+    <string name="quit">Sair</string>
+    <string name="quit_confirmation">Você deseja realmente sair?</string>
 
     <string name="canceled">Checkin cancelado.</string>
     <string name="scanning">Lendo QR-Code...</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="on_code_error">Houve um erro com esse código</string>
 </resources>

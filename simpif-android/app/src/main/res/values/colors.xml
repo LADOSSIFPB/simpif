@@ -7,4 +7,6 @@
     <color name="gelo">#F4F4F4</color>
     <color name="fundo">#2e3254</color>
     <color name="colorPrimaryLight">#595b81</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

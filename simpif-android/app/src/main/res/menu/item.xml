@@ -4,6 +4,6 @@
     <item
         android:id="@+id/sair"
         android:icon="@drawable/exittoapp"
-        android:title="@string/nao"
+        android:title="@string/no"
         app:showAsAction="ifRoom"></item>
 </menu>

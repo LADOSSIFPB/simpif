@@ -1,14 +1,22 @@
 package br.edu.ladoss.simpifladoss.mvp.presenter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
+import java.io.IOException;
 
 import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.mvp.HomeMVP;
 import br.edu.ladoss.simpifladoss.mvp.model.HomeModelImp;
+import br.edu.ladoss.simpifladoss.network.ConnectionServer;
+import retrofit.Call;
+import retrofit.Response;
 
 /**
  * Created by Rennan on 07/09/2017.
@@ -26,25 +34,50 @@ public class HomePresenterImp implements HomeMVP.Presenter{
 
     @Override
     public void openScanner() {
-        model.openScanner(view.get());
+        model.openScanner();
+    }
+
+    @Override
+    public Activity getActivity() {
+        return view.get();
     }
 
     @Override
     public void selectedItem(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.sair) {
-            quit();
+            model.quit();
         }
     }
 
     @Override
-    public void quit() {
-        model.quit(view.get());
+    public void onSendError(String message) {
+        view.setLoading(false);
+    }
+
+    @Override
+    public void onSendSucess() {
+        view.setLoading(false);
     }
 
     @Override
     public void showMessage(String msg) {
-        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+        view.showMessage(msg);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if(result != null) {
+            String content = result.getContents();
+            if(content != null) {
+                view.setLoading(true);
+                model.sendCodeToServer(content);
+            } else {
+                view.showMessage(getContext().getString(R.string.canceled));
+            }
+        }
     }
 
     @Override

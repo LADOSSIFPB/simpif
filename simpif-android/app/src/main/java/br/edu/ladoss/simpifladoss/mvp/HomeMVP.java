@@ -1,6 +1,7 @@
 package br.edu.ladoss.simpifladoss.mvp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.MenuItem;
 
 import br.edu.ladoss.simpifladoss.MVPApp;
@@ -12,19 +13,24 @@ import br.edu.ladoss.simpifladoss.MVPApp;
 public interface HomeMVP {
 
     interface Model extends MVPApp.Model {
-        void openScanner(Activity activity);
-        void quit(Activity activity);
+        void openScanner();
+        void quit();
+        void sendCodeToServer(String code);
     }
 
     interface View extends MVPApp.View {
-
+        void showMessage(String msg);
+        void setLoading(boolean isLoading);
     }
 
     interface Presenter extends MVPApp.Presenter {
         void showMessage(String msg);
+        void onActivityResult(int requestCode, int resultCode, Intent data);
         void openScanner();
-        void quit();
+        Activity getActivity();
         void selectedItem(MenuItem item);
+        void onSendError(String message);
+        void onSendSucess();
     }
 
 }
