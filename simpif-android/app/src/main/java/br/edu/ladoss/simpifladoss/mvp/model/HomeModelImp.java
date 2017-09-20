@@ -21,7 +21,7 @@ import retrofit.Retrofit;
 
 public class HomeModelImp implements HomeMVP.Model {
 
-    private HomeMVP.Presenter presenter;
+    private transient HomeMVP.Presenter presenter;
 
     public HomeModelImp(HomeMVP.Presenter presenter) {
         this.presenter = presenter;
@@ -37,26 +37,7 @@ public class HomeModelImp implements HomeMVP.Model {
     }
 
     public void quit() {
-        AlertDialog alertDialog = new AlertDialog.Builder(presenter.getContext()).create();
-        alertDialog.setTitle(presenter.getContext().getString(R.string.quit));
-        alertDialog.setMessage(presenter.getContext().getString(R.string.quit_confirmation));
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, presenter.getContext().getString(R.string.quit),
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        //
-                        presenter.getContext().startActivity(new Intent(presenter.getContext(), EnterActivity.class));
-                        presenter.getActivity().finish();
-                    }
-                });
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, presenter.getContext().getString(R.string.no),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
+
     }
 
     @Override

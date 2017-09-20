@@ -2,6 +2,7 @@ package br.edu.ladoss.simpifladoss.mvp.presenter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -10,11 +11,13 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.mvp.HomeMVP;
 import br.edu.ladoss.simpifladoss.mvp.model.HomeModelImp;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
+import br.edu.ladoss.simpifladoss.view.activities.EnterActivity;
 import retrofit.Call;
 import retrofit.Response;
 
@@ -25,7 +28,7 @@ import retrofit.Response;
 public class HomePresenterImp implements HomeMVP.Presenter{
 
     private HomeMVP.Model model;
-    private HomeMVP.View view;
+    private transient HomeMVP.View view;
 
     public HomePresenterImp(HomeMVP.View view) {
         this.view = view;
@@ -46,7 +49,7 @@ public class HomePresenterImp implements HomeMVP.Presenter{
     public void selectedItem(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.sair) {
-            model.quit();
+            exit();
         }
     }
 
@@ -63,6 +66,28 @@ public class HomePresenterImp implements HomeMVP.Presenter{
     @Override
     public void showMessage(String msg) {
         view.showMessage(msg);
+    }
+
+    @Override
+    public void exit() {
+        DialogInterface.OnClickListener neutral = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+                getContext().startActivity(new Intent(getContext(), EnterActivity.class));
+                getActivity().finish();
+            }
+        };
+
+        DialogInterface.OnClickListener dismiss = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        };
+
+
+        view.showDialogExit(neutral, dismiss);
     }
 
     @Override

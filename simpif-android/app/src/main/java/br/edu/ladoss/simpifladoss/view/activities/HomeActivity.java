@@ -1,9 +1,13 @@
 package br.edu.ladoss.simpifladoss.view.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.PersistableBundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -43,7 +47,26 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
-        presenter = new HomePresenterImp(this);
+
+
+        if(savedInstanceState != null){
+            HomeMVP.Presenter auxPresenter = (HomeMVP.Presenter) savedInstanceState.getSerializable(HomeMVP.BUNDLE);
+            if(auxPresenter != null){
+                presenter = auxPresenter;
+            }
+        }
+
+        if(presenter == null){
+            presenter = new HomePresenterImp(this);
+        }
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(HomeMVP.BUNDLE, presenter);
+
     }
 
     @OnClick(R.id.btnCheckin)
@@ -86,7 +109,7 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
 
     @Override
     public void showMessage(String msg) {
-        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+        Snackbar.make(this.findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG);
     }
 
     @Override
@@ -94,4 +117,16 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
         content_layout.setVisibility(isLoading ? View.GONE: View.VISIBLE);
         loading_layout.setVisibility(isLoading ? View.VISIBLE: View.GONE);
     }
+
+    @Override
+    public void showDialogExit(DialogInterface.OnClickListener listenerNeutral, DialogInterface.OnClickListener listenerNegative) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle(this.getString(R.string.quit));
+        alertDialog.setMessage(presenter.getContext().getString(R.string.quit_confirmation));
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, presenter.getContext().getString(R.string.quit), listenerNeutral);
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, presenter.getContext().getString(R.string.no), listenerNegative);
+        alertDialog.show();
+    }
+
 }

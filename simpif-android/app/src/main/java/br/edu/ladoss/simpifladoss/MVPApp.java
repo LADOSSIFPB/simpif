@@ -3,13 +3,15 @@ package br.edu.ladoss.simpifladoss;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
+import java.io.Serializable;
+
 /**
  * Created by Rennan on 06/09/2017.
  */
 
 public interface MVPApp {
 
-    interface Model {
+    interface Model extends Serializable {
         void onDestroy();
     }
 
@@ -19,7 +21,7 @@ public interface MVPApp {
         AppCompatActivity get();
     }
 
-    interface Presenter {
+    interface Presenter extends Serializable {
         Context getContext();
         void onDestroy();
     }
