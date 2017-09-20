@@ -4,7 +4,7 @@ import retrofit.Retrofit;
 
 public class ConnectionServer {
 
-    private static final String URL_BASE = "http://localhost:5000/api/";
+    private static final String URL_BASE = "http://10.1.134.37:5000/api/";
     private static APIService service;
     private static ConnectionServer ourInstance = new ConnectionServer();
 

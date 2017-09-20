@@ -61,6 +61,7 @@ public class HomePresenterImp implements HomeMVP.Presenter{
     @Override
     public void onSendSucess() {
         view.setLoading(false);
+        view.showMessage(getContext().getString(R.string.success_msg));
     }
 
     @Override
