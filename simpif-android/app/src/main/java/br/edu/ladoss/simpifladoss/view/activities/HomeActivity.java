@@ -109,7 +109,7 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
 
     @Override
     public void showMessage(String msg) {
-        Snackbar.make(this.findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG);
+        Snackbar.make(this.findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
