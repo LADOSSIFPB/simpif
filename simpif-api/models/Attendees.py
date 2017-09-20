@@ -11,4 +11,4 @@ class Attendees(db.Model):
     arrivalTime = db.Column('arrival_time', db.DateTime)
 
     def __str__(self):
-        return str(self.id) +"  " + str(self.firstName) + " " + str(self.lastName)+ "" +str(self.privateRefNum) +  "  !!!encontrado com sucesso!!" + str(self.hasArrived)
+        return str(self.id) + " " + str(self.firstName) + " " + str(self.lastName) + " " + str(self.privateRefNum) + ". Encontrado com sucesso."
