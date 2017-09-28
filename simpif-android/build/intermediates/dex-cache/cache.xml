@@ -3,48 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.3.0/73c49077166faa4c3c0059c5f583d1d7bd1475fe/core-3.3.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="73c49077166faa4c3c0059c5f583d1d7bd1475fe">
-        <dex dex="/home/ladoss/Java/android/Projetos/simpif/simpif-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/core-3.3.0_b561d74a94d053f08f5be0983f1911fb2b9624f5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.8.1/bc373fb6bc7bca3035041b924f158fd2b946ee8d/butterknife-annotations-8.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="bc373fb6bc7bca3035041b924f158fd2b946ee8d">
-        <dex dex="/home/ladoss/Java/android/Projetos/simpif/simpif-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.8.1_21c6da295415df979c71d62c8fb3c116f0dd076c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.android/build-cache/7c102abd275503a39f023957fff26e387354ac72/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="6a2bcb61342d09fe9acf55c9daf63961c8866cc0">
-        <dex dex="/home/ladoss/Java/android/Projetos/simpif/simpif-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_75f63b787af7bf39cd7e7694d5912cc9ff549a8b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/ladoss/Java/android/Projetos/simpif/simpif-android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="ab0e7bb54a446fb5ebd6c9942035a3a966b2ef02">
+        sha1="45cbe8142e4f06af0de3cabddb08b1db5c4ffeba">
         <dex dex="/home/ladoss/Java/android/Projetos/simpif/simpif-android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_6880af25e79f496a907e669527094d87bc332696/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.android/build-cache/5210db412081175944c6b3b7c2bbdd08d3c2ddd3/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="77e3f210322743390ab44e667cc8988ba5d9433b">
-        <dex dex="/home/ladoss/Java/android/Projetos/simpif/simpif-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_52973f621a5dc1f86a35f25f097cef89fa898ecd/classes.dex" />
     </item>
     <item
         is-multidex="true"

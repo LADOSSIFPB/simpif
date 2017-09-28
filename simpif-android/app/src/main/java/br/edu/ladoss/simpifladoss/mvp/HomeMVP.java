@@ -17,6 +17,7 @@ public interface HomeMVP {
     interface Model extends MVPApp.Model {
         void openScanner();
         void sendCodeToServer(String code);
+        void openManualCheckin();
     }
 
     interface View extends MVPApp.View {
@@ -34,6 +35,7 @@ public interface HomeMVP {
         void selectedItem(MenuItem item);
         void onSendError(String message);
         void onSendSucess();
+        void openManualCheckin();
     }
 
 }

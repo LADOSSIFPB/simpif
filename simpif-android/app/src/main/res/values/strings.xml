@@ -12,4 +12,5 @@
     <string name="on_code_error">Houve um erro com esse código</string>
     <string name="success_msg">Checkin realizado.</string>
     <string name="search">Pesquisar</string>
+    <string name="manualcheckin">Procurar por código de compra</string>
 </resources>

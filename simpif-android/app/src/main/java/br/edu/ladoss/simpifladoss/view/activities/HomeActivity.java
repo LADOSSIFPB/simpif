@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.PersistableBundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -16,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.mvp.HomeMVP;
@@ -30,6 +28,8 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
     private HomeMVP.Presenter presenter;
     @BindView(R.id.btnCheckin)
     Button btnCheckin;
+    @BindView(R.id.btnManual)
+    Button btnManual;
     @BindView(R.id.content_layout)
     ConstraintLayout content_layout;
     @BindView(R.id.loading_layout)
@@ -72,6 +72,11 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
     @OnClick(R.id.btnCheckin)
     public void openScanner(View view) {
         presenter.openScanner();
+    }
+
+    @OnClick(R.id.btnManual)
+    public void openManualCheckin(View view) {
+        presenter.openManualCheckin();
     }
 
     @Override

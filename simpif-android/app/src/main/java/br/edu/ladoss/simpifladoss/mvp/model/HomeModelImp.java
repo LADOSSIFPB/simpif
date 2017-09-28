@@ -10,6 +10,7 @@ import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.mvp.HomeMVP;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
 import br.edu.ladoss.simpifladoss.view.activities.EnterActivity;
+import br.edu.ladoss.simpifladoss.view.activities.SearchActivity;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -36,8 +37,9 @@ public class HomeModelImp implements HomeMVP.Model {
         integrator.initiateScan();
     }
 
-    public void quit() {
-
+    @Override
+    public void openManualCheckin() {
+        presenter.getContext().startActivity(new Intent(presenter.getContext(), SearchActivity.class));
     }
 
     @Override
