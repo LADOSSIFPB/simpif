@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_cors import CORS
 from common.database import db
 from resources.AttendeesResource import AttendeesResource
+from resources.OrdersResource import OrdersResource
 
 app = Flask(__name__)
 
@@ -16,6 +17,8 @@ api_bp = Blueprint('api', __name__)
 api = Api(api_bp, prefix='/api')
 
 api.add_resource(AttendeesResource, '/checkin/attendees/<string:codigo>')
+api.add_resource(OrdersResource, '/checkin/orders/<string:orderRef>')
+
 
 app.register_blueprint(api_bp)
 

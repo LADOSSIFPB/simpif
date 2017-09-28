@@ -10,5 +10,12 @@ class Attendees(db.Model):
     hasArrived = db.Column('has_arrived', db.Boolean)
     arrivalTime = db.Column('arrival_time', db.DateTime)
 
+    order_id = db.Column('order_id', db.ForeignKey("orders.id"))
+
+    order = db.relationship('Orders', lazy='dynamic')
+
+    def __init__(self, firstName):
+        pass
+
     def __str__(self):
         return str(self.id) + " " + str(self.firstName) + " " + str(self.lastName) + " " + str(self.privateRefNum) + ". Encontrado com sucesso."

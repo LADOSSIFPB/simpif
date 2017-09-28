@@ -3,14 +3,17 @@
 from flask_restful import Resource
 from flask import Response
 from common.database import db
+from models.Orders import Orders
 from models.Attendees import Attendees
 import datetime
 
-class AttendeesResource(Resource):
+class OrdersResource(Resource):
 
-    def get(self, codigo):
+    def get(self, orderRef):
         try:
-            attendees = Attendees.query.filter_by(privateRefNum=codigo).first()
+            orderRef = orderRef.upper()
+            orders = Orders.query.filter_by(order_reference=orderRef).first()
+            attendees = Attendees.query.filter_by(order_id=orders.id).first()
             print(attendees)
             if (attendees.hasArrived):
                 return Response("Check-in já foi realizado antes.", 200, mimetype='text/plain')
