@@ -5,14 +5,20 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.Button;
 
 import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.mvp.SearchMVP;
 import br.edu.ladoss.simpifladoss.mvp.presenter.SearchPresenterImp;
+import butterknife.BindView;
+import butterknife.OnClick;
 
 public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
 
     private SearchMVP.Presenter presenter;
+
+    @BindView(R.id.btnSearch)
+    Button btnSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,11 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
         setSupportActionBar(toolbar);
 
         this.presenter = new SearchPresenterImp(this);
+    }
+
+    @OnClick(R.id.btnSearch)
+    public void search(){
+
     }
 
     @Override

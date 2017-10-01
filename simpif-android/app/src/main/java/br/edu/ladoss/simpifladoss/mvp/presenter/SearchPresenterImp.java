@@ -18,9 +18,6 @@ public class SearchPresenterImp implements SearchMVP.Presenter{
     private SearchMVP.View view;
     private SearchMVP.Model model;
 
-    @BindView(R.id.btnSearch)
-    Button btnSearch;
-
     public SearchPresenterImp(SearchMVP.View view) {
         this.view = view;
         this.model = new SearchModelImp(this);
@@ -36,10 +33,5 @@ public class SearchPresenterImp implements SearchMVP.Presenter{
         model.onDestroy();
         model = null;
         view = null;
-    }
-
-    @OnClick(R.id.btnSearch)
-    public void search(){
-
     }
 }
