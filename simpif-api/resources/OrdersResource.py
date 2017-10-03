@@ -27,3 +27,15 @@ class OrdersResource(Resource):
 
         except AttributeError:
             return Response("Código inválido.", 404, mimetype="text/plain")
+        
+class OrderAttendeesResource(Resource):
+    # GET /eventos/<evento_id>/cronogramas/<cronograma_id>/trilhas/<trilha_id>/apresentacoes
+    @marshal_with(attendee_campos)
+    def get(self, order_ref):
+        # Verificar Order Reference
+        attendees = (db.session.query(Attendee)
+                         .join(Order, Order.id == Attendee.order_id )
+                         .filter(Order.order_reference == order_ref)
+                         .all()
+
+        return attendees, 200
