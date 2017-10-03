@@ -3,6 +3,7 @@ package br.edu.ladoss.simpifladoss.mvp;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import br.edu.ladoss.simpifladoss.MVPApp;
@@ -17,7 +18,6 @@ public interface HomeMVP {
     interface Model extends MVPApp.Model {
         void openScanner();
         void sendCodeToServer(String code);
-        void openManualCheckin();
     }
 
     interface View extends MVPApp.View {
@@ -34,6 +34,9 @@ public interface HomeMVP {
         Activity getActivity();
         void selectedItem(MenuItem item);
         void onSendError(String message);
+
+        void onCreateOptionsMenu(Menu menu);
+
         void onSendSucess();
         void openManualCheckin();
     }

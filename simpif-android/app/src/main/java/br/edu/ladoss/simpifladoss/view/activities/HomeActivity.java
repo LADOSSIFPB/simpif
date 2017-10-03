@@ -82,6 +82,8 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.item, menu);
+
+        presenter.onCreateOptionsMenu(menu);
         return true;
     }
 

@@ -38,11 +38,6 @@ public class HomeModelImp implements HomeMVP.Model {
     }
 
     @Override
-    public void openManualCheckin() {
-        presenter.getContext().startActivity(new Intent(presenter.getContext(), SearchActivity.class));
-    }
-
-    @Override
     public void sendCodeToServer(String code) {
         ConnectionServer.getInstance().updateServiceAdress();
 

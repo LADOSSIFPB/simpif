@@ -1,9 +1,14 @@
 package br.edu.ladoss.simpifladoss.mvp.presenter;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -18,6 +23,7 @@ import br.edu.ladoss.simpifladoss.mvp.HomeMVP;
 import br.edu.ladoss.simpifladoss.mvp.model.HomeModelImp;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
 import br.edu.ladoss.simpifladoss.view.activities.EnterActivity;
+import br.edu.ladoss.simpifladoss.view.activities.SearchActivity;
 import retrofit.Call;
 import retrofit.Response;
 
@@ -25,7 +31,7 @@ import retrofit.Response;
  * Created by Rennan on 07/09/2017.
  */
 
-public class HomePresenterImp implements HomeMVP.Presenter{
+public class HomePresenterImp implements HomeMVP.Presenter {
 
     private HomeMVP.Model model;
     private transient HomeMVP.View view;
@@ -60,7 +66,23 @@ public class HomePresenterImp implements HomeMVP.Presenter{
 
     @Override
     public void openManualCheckin() {
-        model.openManualCheckin();
+        getContext().startActivity(new Intent(getContext(), SearchActivity.class));
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu) {
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView;
+        MenuItem item = menu.findItem(R.id.action_searchable_activity);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+            searchView = (SearchView) item.getActionView();
+        } else{
+            searchView = (SearchView) MenuItemCompat.getActionView(item);
+        }
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setQueryHint(getContext().getString(R.string.action_searchable_activity));
     }
 
     @Override
@@ -100,9 +122,9 @@ public class HomePresenterImp implements HomeMVP.Presenter{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
-        if(result != null) {
+        if (result != null) {
             String content = result.getContents();
-            if(content != null) {
+            if (content != null) {
                 view.setLoading(true);
                 model.sendCodeToServer(content);
             } else {

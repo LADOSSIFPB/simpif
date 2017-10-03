@@ -13,4 +13,5 @@
     <string name="success_msg">Checkin realizado.</string>
     <string name="search">Pesquisar</string>
     <string name="manualcheckin">Procurar por código de compra</string>
+    <string name="action_searchable_activity">Pesquisar</string>
 </resources>
