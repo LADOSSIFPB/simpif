@@ -1,6 +1,8 @@
 package br.edu.ladoss.simpifladoss.mvp.presenter;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.widget.Button;
 
 import java.util.List;
@@ -9,6 +11,7 @@ import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.models.Attendee;
 import br.edu.ladoss.simpifladoss.mvp.SearchMVP;
 import br.edu.ladoss.simpifladoss.mvp.model.SearchModelImp;
+import br.edu.ladoss.simpifladoss.view.activities.EnterActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -38,7 +41,23 @@ public class SearchPresenterImp implements SearchMVP.Presenter{
 
     @Override
     public void onSendSucess() {
-        view.showMessage(getContext().getString(R.string.success_msg));
+        DialogInterface.OnClickListener neutral = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+                view.get().finish();
+                onDestroy();
+            }
+        };
+
+        DialogInterface.OnClickListener dismiss = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        };
+
+        view.showDialogConfirmation(neutral, dismiss);
     }
 
     @Override

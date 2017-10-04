@@ -1,5 +1,7 @@
 package br.edu.ladoss.simpifladoss.mvp;
 
+import android.content.DialogInterface;
+
 import java.util.List;
 
 import br.edu.ladoss.simpifladoss.MVPApp;
@@ -19,6 +21,7 @@ public interface SearchMVP extends MVPApp {
     interface View extends MVPApp.View {
         void showMessage(String msg);
         void updateAttendees(List<Attendee> attendees);
+        void showDialogConfirmation(DialogInterface.OnClickListener listenerNeutral, DialogInterface.OnClickListener listenerNegative);
     }
 
     interface Presenter extends MVPApp.Presenter {

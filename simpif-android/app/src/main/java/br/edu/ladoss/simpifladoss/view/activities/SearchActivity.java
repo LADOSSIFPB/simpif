@@ -2,9 +2,11 @@ package br.edu.ladoss.simpifladoss.view.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -58,6 +60,17 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
     @Override
     public void showMessage(String msg) {
         Snackbar.make(this.findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showDialogConfirmation(DialogInterface.OnClickListener listenerNeutral, DialogInterface.OnClickListener listenerNegative) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle(this.getString(R.string.checkin));
+        alertDialog.setMessage(presenter.getContext().getString(R.string.checkin_confirmation));
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.confirm), listenerNeutral);
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no), listenerNegative);
+        alertDialog.show();
     }
 
     @Override

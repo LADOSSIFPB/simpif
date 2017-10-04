@@ -2,6 +2,7 @@ package br.edu.ladoss.simpifladoss.mvp.model;
 
 import android.content.Intent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ladoss.simpifladoss.R;
@@ -35,8 +36,9 @@ public class SearchModelImp implements SearchMVP.Model{
             @Override
             public void onResponse(Response<List<Attendee>> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    if(!response.body().isEmpty())
+                    if(!response.body().isEmpty()) {
                         presenter.updateAttendees(response.body());
+                    }
                     else
                         presenter.onSendError(presenter.getContext().getString(R.string.on_code_error));
                 }

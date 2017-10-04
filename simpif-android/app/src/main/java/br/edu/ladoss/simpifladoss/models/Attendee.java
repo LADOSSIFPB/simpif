@@ -51,7 +51,7 @@ public class Attendee {
         return privateRefNum;
     }
 
-    public boolean isHasArrived() {
+    public boolean hasArrived() {
         return hasArrived;
     }
 
