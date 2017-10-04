@@ -14,22 +14,53 @@ public class Attendee {
     private String email;
     private int privateRefNum;
     private boolean hasArrived;
-    private Date arrivalTime;
+    private String arrivalTime;
 
     private int orderId;
-    private Order order;
 
-    public Attendee(int id, String firstName, String lastName, String email, int privateRefNum, boolean hasArrived, Date arrivalTime, int orderId, Order order) {
+    public Attendee(int id, String firstName, String lastName, String email, int privateRefNum, boolean hasArrived, String arrivalTime, int orderId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+
         this.email = email;
         this.privateRefNum = privateRefNum;
         this.hasArrived = hasArrived;
         this.arrivalTime = arrivalTime;
 
         this.orderId = orderId;
-        this.order = order;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getPrivateRefNum() {
+        return privateRefNum;
+    }
+
+    public boolean isHasArrived() {
+        return hasArrived;
+    }
+
+    public String getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public int getOrderId() {
+        return orderId;
     }
 
 }
