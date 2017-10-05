@@ -14,4 +14,8 @@
     <string name="search">Pesquisar</string>
     <string name="manualcheckin">Procurar por código de compra</string>
     <string name="action_searchable_activity">Pesquisar</string>
+    <string name="attendee_name">Nome</string>
+    <string name="checkin_confirmation">Você deseja confirmar o check-in?</string>
+    <string name="confirm">Confirmar</string>
+    <string name="checkin">Check-in</string>
 </resources>

@@ -62,6 +62,7 @@ public class HomePresenterImp implements HomeMVP.Presenter {
     @Override
     public void onSendError(String message) {
         view.setLoading(false);
+        view.showMessage(message);
     }
 
     @Override

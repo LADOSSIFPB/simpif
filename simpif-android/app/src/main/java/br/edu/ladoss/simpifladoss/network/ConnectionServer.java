@@ -1,10 +1,11 @@
 package br.edu.ladoss.simpifladoss.network;
 
+import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
 public class ConnectionServer {
 
-    private static final String URL_BASE = "http://10.1.134.37:5000/api/";
+    private static final String URL_BASE = "http://10.1.134.157:5000/api/";
     private static APIService service;
     private static ConnectionServer ourInstance = new ConnectionServer();
 
@@ -23,6 +24,7 @@ public class ConnectionServer {
     public void updateServiceAdress() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL_BASE)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         service = retrofit.create(APIService.class);

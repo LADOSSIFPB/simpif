@@ -14,4 +14,11 @@ public class Order {
         this.orderReference = orderReference;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getOrderReference() {
+        return orderReference;
+    }
 }
