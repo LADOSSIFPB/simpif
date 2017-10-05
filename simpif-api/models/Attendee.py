@@ -1,6 +1,18 @@
 from common.database import db
+from flask_restful import fields
 
-class Attendees(db.Model):
+attendee_fields = {
+    'id': fields.Integer,
+    'firstName': fields.String,
+    'lastName': fields.String,
+    'email': fields.String,
+    'privateRefNum': fields.Integer,
+    'hasArrived': fields.Boolean,
+    'arrivalTime': fields.DateTime(dt_format='iso8601'),
+    'order_id': fields.Integer
+}
+
+class Attendee(db.Model):
     __tablename__ = 'attendees'
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     firstName = db.Column('first_name', db.String(255))
@@ -12,10 +24,14 @@ class Attendees(db.Model):
 
     order_id = db.Column('order_id', db.ForeignKey("orders.id"))
 
-    order = db.relationship('Orders', lazy='dynamic')
-
-    def __init__(self, firstName):
-        pass
+    def __init__(self, firstName, lastName, email, privateRefNum, hasArrived, arrivalTime, order_id):
+        self.firstName = firstName
+        self.lastName = lastName
+        self.email = email
+        self.privateRefNum = privateRefNum
+        self.hasArrived = hasArrived
+        self.arrivalTime = arrivalTime
+        self.order_id = order_id
 
     def __str__(self):
         return str(self.id) + " " + str(self.firstName) + " " + str(self.lastName) + " " + str(self.privateRefNum) + ". Encontrado com sucesso."

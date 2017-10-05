@@ -3,14 +3,14 @@
 from flask_restful import Resource
 from flask import Response
 from common.database import db
-from models.Attendees import Attendees
+from models.Attendee import Attendee
 import datetime
 
-class AttendeesResource(Resource):
+class AttendeeResource(Resource):
 
     def get(self, codigo):
         try:
-            attendees = Attendees.query.filter_by(privateRefNum=codigo).first()
+            attendees = Attendee.query.filter_by(privateRefNum=codigo).first()
             print(attendees)
             if (attendees.hasArrived):
                 return Response("Check-in já foi realizado antes.", 200, mimetype='text/plain')
