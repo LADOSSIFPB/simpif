@@ -47,8 +47,6 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
-
-
         if(savedInstanceState != null){
             HomeMVP.Presenter auxPresenter = (HomeMVP.Presenter) savedInstanceState.getSerializable(HomeMVP.BUNDLE);
             if(auxPresenter != null){
@@ -59,7 +57,6 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
         if(presenter == null){
             presenter = new HomePresenterImp(this);
         }
-
     }
 
     @Override
@@ -82,7 +79,6 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.item, menu);
-
         presenter.onCreateOptionsMenu(menu);
         return true;
     }
@@ -131,7 +127,6 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
         alertDialog.setTitle(this.getString(R.string.quit));
         alertDialog.setMessage(presenter.getContext().getString(R.string.quit_confirmation));
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, presenter.getContext().getString(R.string.quit), listenerNeutral);
-
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, presenter.getContext().getString(R.string.no), listenerNegative);
         alertDialog.show();
     }

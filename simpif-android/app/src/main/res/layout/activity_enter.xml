@@ -41,15 +41,16 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
-                        android:scaleType="fitStart"
-                        app:srcCompat="@drawable/logo" />
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitEnd"
+                        app:srcCompat="@drawable/ic_simpif_logo" />
 
                     <EditText
                         android:id="@+id/identificadorEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
                         android:layout_marginTop="15dp"
                         android:autoText="true"
                         android:background="@drawable/edit_text_white_top"
@@ -67,8 +68,8 @@
                         android:id="@+id/passwordEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edit_text_white_bottom"
                         android:hint="Senha"
@@ -86,13 +87,13 @@
                         style="@style/button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
                         android:layout_marginTop="40dp"
                         android:onClick="doLogin"
                         android:text="Login"
                         android:textStyle="bold"
-                        android:translationZ="3dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"/>
+                        android:translationZ="3dp" />
 
                 </LinearLayout>
             </ScrollView>

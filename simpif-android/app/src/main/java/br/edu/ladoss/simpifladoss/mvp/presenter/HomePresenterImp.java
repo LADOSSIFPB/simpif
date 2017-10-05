@@ -72,7 +72,7 @@ public class HomePresenterImp implements HomeMVP.Presenter {
 
     @Override
     public void onCreateOptionsMenu(Menu menu) {
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        /*SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView;
         MenuItem item = menu.findItem(R.id.action_searchable_activity);
 
@@ -84,6 +84,7 @@ public class HomePresenterImp implements HomeMVP.Presenter {
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setQueryHint(getContext().getString(R.string.action_searchable_activity));
+        */
     }
 
     @Override
