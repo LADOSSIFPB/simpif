@@ -1,5 +1,6 @@
 package br.edu.ladoss.simpifladoss.view.activities;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,12 +30,14 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
     private HomeMVP.Presenter presenter;
     @BindView(R.id.btnCheckin)
     Button btnCheckin;
-    @BindView(R.id.btnManual)
-    Button btnManual;
+    //@BindView(R.id.btnManual)
+   // Button btnManual;
     @BindView(R.id.content_layout)
     ConstraintLayout content_layout;
     @BindView(R.id.loading_layout)
     LinearLayout loading_layout;
+    @BindView(R.id.searchview)
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,11 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
         toolbar.setTitle(R.string.app_name);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setQueryHint(getContext().getString(R.string.action_searchable_activity));
 
         if(savedInstanceState != null){
             HomeMVP.Presenter auxPresenter = (HomeMVP.Presenter) savedInstanceState.getSerializable(HomeMVP.BUNDLE);
@@ -71,7 +80,7 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
         presenter.openScanner();
     }
 
-    @OnClick(R.id.btnManual)
+    //@OnClick(R.id.btnManual)
     public void openManualCheckin(View view) {
         presenter.openManualCheckin();
     }

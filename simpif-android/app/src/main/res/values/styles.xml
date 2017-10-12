@@ -26,5 +26,12 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="searchIcon">@drawable/ic_search_white_24dp</item>
+        <item name="queryBackground">@color/gelo</item>
+        <item name="searchHintIcon">@drawable/ic_search_white_24dp</item>
+        <item name="queryHint">@string/search</item>
+    </style>
+
 
 </resources>

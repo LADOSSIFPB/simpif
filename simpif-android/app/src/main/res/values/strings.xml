@@ -18,4 +18,6 @@
     <string name="checkin_confirmation">Você deseja confirmar o check-in?</string>
     <string name="confirm">Confirmar</string>
     <string name="checkin">Check-in</string>
+    <string name="exit">Sair</string>
+    <string name="or">ou</string>
 </resources>

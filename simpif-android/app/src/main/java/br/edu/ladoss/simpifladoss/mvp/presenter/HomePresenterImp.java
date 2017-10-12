@@ -83,8 +83,7 @@ public class HomePresenterImp implements HomeMVP.Presenter {
         }
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-        searchView.setQueryHint(getContext().getString(R.string.action_searchable_activity));
-        */
+        searchView.setQueryHint(getContext().getString(R.string.action_searchable_activity));*/
     }
 
     @Override

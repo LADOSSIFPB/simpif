@@ -40,19 +40,12 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
     @BindView(R.id.code_list)
     RecyclerView recycle;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar ;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
         ButterKnife.bind(this);
-        toolbar.setTitle(R.string.app_name);
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         this.presenter = new SearchPresenterImp(this);
     }
@@ -115,8 +108,6 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
     public void handleSearch(Intent intent){
         if(Intent.ACTION_SEARCH.equalsIgnoreCase(intent.getAction())){
             String query = intent.getStringExtra(SearchManager.QUERY);
-            toolbar.setTitle(query);
-
             presenter.requestOrderAttendees(query);
         }
     }
