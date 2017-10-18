@@ -9,6 +9,7 @@ import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.models.Attendee;
 import br.edu.ladoss.simpifladoss.mvp.SearchMVP;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
+import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -30,7 +31,7 @@ public class SearchModelImp implements SearchMVP.Model{
     public void requestOrderAttendees(String orderRef) {
         ConnectionServer.getInstance().updateServiceAdress();
 
-        Call<List<Attendee>> call = ConnectionServer.getInstance().getService().order(orderRef);
+        Call<List<Attendee>> call = ConnectionServer.getInstance().getService().order(orderRef, PreferencesUtils.getAccessKeyOnSharedPreferences(presenter.getContext()));
 
         call.enqueue(new Callback<List<Attendee>>() {
             @Override
@@ -55,7 +56,7 @@ public class SearchModelImp implements SearchMVP.Model{
     public void sendCodeToServer(String code) {
         ConnectionServer.getInstance().updateServiceAdress();
 
-        Call<Void> call = ConnectionServer.getInstance().getService().checkin(code);
+        Call<Void> call = ConnectionServer.getInstance().getService().checkin(code, PreferencesUtils.getAccessKeyOnSharedPreferences(presenter.getContext()));
 
         call.enqueue(new Callback<Void>() {
             @Override

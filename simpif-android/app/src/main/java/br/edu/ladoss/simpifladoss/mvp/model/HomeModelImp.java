@@ -9,6 +9,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.mvp.HomeMVP;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
+import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
 import br.edu.ladoss.simpifladoss.view.activities.EnterActivity;
 import br.edu.ladoss.simpifladoss.view.activities.SearchActivity;
 import retrofit.Call;
@@ -41,7 +42,7 @@ public class HomeModelImp implements HomeMVP.Model {
     public void sendCodeToServer(String code) {
         ConnectionServer.getInstance().updateServiceAdress();
 
-        Call<Void> call = ConnectionServer.getInstance().getService().checkin(code);
+        Call<Void> call = ConnectionServer.getInstance().getService().checkin(code, PreferencesUtils.getAccessKeyOnSharedPreferences(presenter.getContext()));
 
         call.enqueue(new Callback<Void>() {
             @Override

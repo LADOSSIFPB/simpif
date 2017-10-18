@@ -4,38 +4,33 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
+import android.support.v7.widget.SearchView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.models.Attendee;
-import br.edu.ladoss.simpifladoss.models.Order;
 import br.edu.ladoss.simpifladoss.mvp.SearchMVP;
 import br.edu.ladoss.simpifladoss.mvp.presenter.SearchPresenterImp;
 import br.edu.ladoss.simpifladoss.view.adapters.AttendeeAdapter;
 import br.edu.ladoss.simpifladoss.view.callback.RecycleButtonClicked;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
 
     private SearchMVP.Presenter presenter;
+
+    @BindView(R.id.searchView)
+    SearchView search;
 
     @BindView(R.id.code_list)
     RecyclerView recycle;
@@ -48,6 +43,13 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
         ButterKnife.bind(this);
 
         this.presenter = new SearchPresenterImp(this);
+        handleSearch(getIntent());
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        search.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        search.setQueryHint(getContext().getString(R.string.search));
+        search.onActionViewExpanded();
     }
 
     @Override
@@ -79,7 +81,7 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
                 recycle.setAdapter(new AttendeeAdapter(context, attendees, new RecycleButtonClicked() {
                     @Override
                     public void onClickCallback(Attendee attendee) {
-                        presenter.sendCodeToServer(Integer.toString(attendee.getPrivateRefNum()));
+                        presenter.onClickAttendee(attendee);
                     }
                 }));
                 recycle.setVisibility(View.VISIBLE);
@@ -108,6 +110,8 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
     public void handleSearch(Intent intent){
         if(Intent.ACTION_SEARCH.equalsIgnoreCase(intent.getAction())){
             String query = intent.getStringExtra(SearchManager.QUERY);
+            CharSequence cs = query;
+            search.setQuery(query, false);
             presenter.requestOrderAttendees(query);
         }
     }
