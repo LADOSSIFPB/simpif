@@ -28,10 +28,8 @@ import butterknife.OnClick;
 public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
 
     private HomeMVP.Presenter presenter;
-    @BindView(R.id.btnCheckin)
-    Button btnCheckin;
-    //@BindView(R.id.btnManual)
-   // Button btnManual;
+    @BindView(R.id.layoutCheckin)
+    ConstraintLayout layoutCheckin;
     @BindView(R.id.content_layout)
     ConstraintLayout content_layout;
     @BindView(R.id.loading_layout)
@@ -48,13 +46,14 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.app_name);
-        toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setQueryHint(getContext().getString(R.string.action_searchable_activity));
+        searchView.setQueryHint(getContext().getString(R.string.search));
+        searchView.onActionViewExpanded();
+
 
         if(savedInstanceState != null){
             HomeMVP.Presenter auxPresenter = (HomeMVP.Presenter) savedInstanceState.getSerializable(HomeMVP.BUNDLE);
@@ -75,7 +74,7 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
 
     }
 
-    @OnClick(R.id.btnCheckin)
+    @OnClick(R.id.layoutCheckin)
     public void openScanner(View view) {
         presenter.openScanner();
     }

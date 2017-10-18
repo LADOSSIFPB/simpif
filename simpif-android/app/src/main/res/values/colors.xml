@@ -4,9 +4,11 @@
     <color name="colorPrimaryDark">#060a2b</color>
     <color name="colorAccent">#FF4081</color>
     <color name="corButton">#2e3254</color>
-    <color name="gelo">#F4F4F4</color>
+    <color name="gelo">#f4f4f4</color>
     <color name="fundo">#2e3254</color>
     <color name="colorPrimaryLight">#595b81</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="background_material_dark">#ffffff</color>
+    <color name="secondary_text_material_dark">#8a000000</color>
 </resources>
