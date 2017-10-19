@@ -54,7 +54,6 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
         searchView.setQueryHint(getContext().getString(R.string.search));
         searchView.onActionViewExpanded();
 
-
         if(savedInstanceState != null){
             HomeMVP.Presenter auxPresenter = (HomeMVP.Presenter) savedInstanceState.getSerializable(HomeMVP.BUNDLE);
             if(auxPresenter != null){

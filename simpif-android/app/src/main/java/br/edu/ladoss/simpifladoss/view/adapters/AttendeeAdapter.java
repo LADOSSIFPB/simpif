@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -55,6 +56,8 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomVi
     public void onBindViewHolder(RoomViewHolder holder, int position) {
         holder.nome.setText(attendees.get(position).getFirstName() + " " + attendees.get(position).getLastName());
         holder.refNumber.setText(Integer.toString(attendees.get(position).getPrivateRefNum()));
+        if(attendees.get(position).hasArrived())
+            holder.checked.setChecked(true);
     }
 
     @Override
@@ -64,11 +67,13 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomVi
 
     public class RoomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nome, refNumber;
+        CheckBox checked;
 
         public RoomViewHolder(View item) {
             super(item);
             nome = (TextView) item.findViewById(R.id.nomeAttendee);
             refNumber = (TextView) item.findViewById(R.id.privateNumber);
+            checked = (CheckBox) item.findViewById(R.id.checked);
             item.setOnClickListener(this);
         }
 

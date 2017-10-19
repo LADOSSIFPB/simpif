@@ -2,6 +2,7 @@ package br.edu.ladoss.simpifladoss.mvp.presenter;
 
 import android.content.Context;
 
+import br.edu.ladoss.simpifladoss.models.User;
 import br.edu.ladoss.simpifladoss.mvp.EnterMVP;
 import br.edu.ladoss.simpifladoss.mvp.model.EnterModelImp;
 
@@ -20,8 +21,8 @@ public class EnterPresenterImp implements EnterMVP.Presenter {
     }
 
     @Override
-    public void doLogin() {
-        model.doLogin();
+    public void login(User user) {
+        model.login(user);
         view.get().finish();
     }
 

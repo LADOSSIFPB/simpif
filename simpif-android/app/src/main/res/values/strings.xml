@@ -18,4 +18,5 @@
     <string name="checkin">Check-in por QRCode</string>
     <string name="exit">Sair</string>
     <string name="or">ou</string>
+    <string name="already_checked">Checkin já realizado.</string>
 </resources>
