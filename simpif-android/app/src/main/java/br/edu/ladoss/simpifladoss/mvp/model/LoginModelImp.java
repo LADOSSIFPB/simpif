@@ -1,26 +1,23 @@
 package br.edu.ladoss.simpifladoss.mvp.model;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 
-import java.io.IOException;
-
 import br.edu.ladoss.simpifladoss.R;
+import br.edu.ladoss.simpifladoss.exception.FormLoginException;
 import br.edu.ladoss.simpifladoss.models.User;
 import br.edu.ladoss.simpifladoss.mvp.LoginMVP;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
 import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
-import br.edu.ladoss.simpifladoss.view.activities.EnterActivity;
-import br.edu.ladoss.simpifladoss.view.activities.HomeActivity;
 import retrofit.Call;
+import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by root on 18/10/17.
  */
 
-public class LoginModelImp implements LoginMVP.Model{
+public class LoginModelImp implements LoginMVP.Model {
 
     private LoginMVP.Presenter presenter;
 
@@ -29,63 +26,44 @@ public class LoginModelImp implements LoginMVP.Model{
     }
 
     @Override
-    public void doLogin(final User userReferencial, final Bundle extra) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ConnectionServer.getInstance().updateServiceAdress();
+    public void tryLoginUser(User userReferencial) {
+        if (userReferencial != null){
+            String accessKey = PreferencesUtils.getAccessKeyOnSharedPreferences(presenter.getContext());
 
-                String acessKey = PreferencesUtils.getAccessKeyOnSharedPreferences(presenter.getContext());
-
-                User user = userReferencial;
-
-                if (acessKey == null || acessKey.isEmpty()) {
-
-                    acessKey = receiveAcessKey(user);
-
-                    //Cria e testa se a chave é valida
-                    if ((acessKey == null) || acessKey.isEmpty()) {
-                        Intent intent = new Intent(presenter.getContext(), EnterActivity.class);
-                        intent.putExtras(extra);
-                        presenter.getContext().startActivity(intent);
-                        presenter.finishActivity();
-                        return;
-                    }
-                    PreferencesUtils.setAccessKeyOnSharedPreferences(presenter.getContext(), acessKey);
-                }
-
-                presenter.getContext().startActivity(new Intent(presenter.getContext(), HomeActivity.class));
-                presenter.finishActivity();
+            if (accessKey != null && !accessKey.isEmpty()) {
+                presenter.onSuccessLogin();
+            } else {
+                Log.d(LoginModelImp.class.getName(), "AcessKey inexistente");
+                getAccessKeyFromServer(userReferencial);
             }
-        }).start();
+        }
     }
 
-    @Override
-    public String receiveAcessKey(User user) {
-        Log.i(presenter.getContext().getString(R.string.app_name), " solicitando uma chave ao servidor");
+
+    private void getAccessKeyFromServer(final User user) {
+        Log.i(this.getClass().getName(), " solicitando uma chave ao servidor");
 
         Call<String> call = ConnectionServer.getInstance().getService().login(user);
 
-        try {
-            Response<String> response = call.execute();
-
-            if (response.isSuccess()) {
-                Log.i(presenter.getContext().getString(R.string.app_name), " chave recuperada com sucesso");
-                return response.body();
-
-            } else {
-                Log.i(presenter.getContext().getString(R.string.app_name), " a chave não foi recuperada com êxito");
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Response<String> response, Retrofit retrofit) {
+                if (response.isSuccess()) {
+                    Log.i(this.getClass().getName(), " chave recuperada com sucesso");
+                    PreferencesUtils.setAccessKeyOnSharedPreferences(presenter.getContext(), response.body());
+                    tryLoginUser(user);
+                } else {
+                    Log.i(this.getClass().getName(), " a chave não foi recuperada com êxito");
+                    presenter.onFailureLogin(new FormLoginException("Usuário inválido"));
+                }
             }
-        } catch (IOException e) {
-            Log.e(presenter.getContext().getString(R.string.app_name), e.getMessage());
-        }
 
-        return null;
-    }
-
-    @Override
-    public void redirectLogin(Bundle extra) {
-
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e(this.getClass().getName(), t.getMessage());
+                presenter.onFailureLogin(new RuntimeException(t));
+            }
+        });
     }
 
     @Override

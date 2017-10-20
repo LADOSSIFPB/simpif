@@ -4,16 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import br.edu.ladoss.simpifladoss.exception.ValidationException;
 import br.edu.ladoss.simpifladoss.models.User;
 import br.edu.ladoss.simpifladoss.mvp.LoginMVP;
 import br.edu.ladoss.simpifladoss.mvp.model.LoginModelImp;
 import br.edu.ladoss.simpifladoss.view.activities.EnterActivity;
+import br.edu.ladoss.simpifladoss.view.activities.HomeActivity;
 
 /**
  * Created by Rennan on 18/10/17.
  */
 
-public class LoginPresenterImp implements LoginMVP.Presenter{
+public class LoginPresenterImp implements LoginMVP.Presenter {
 
     private LoginMVP.View view;
     private LoginMVP.Model model;
@@ -25,25 +27,44 @@ public class LoginPresenterImp implements LoginMVP.Presenter{
 
     @Override
     public void doLogin(Bundle extra) {
-        if (extra != null && !extra.isEmpty()) {
+        try {
             User user = new User();
             user.setEmail(extra.getString("email"));
             user.setSenha(extra.getString("senha"));
 
-            if (!(user.getEmail() == null || user.getEmail().isEmpty())){
-                model.doLogin(user, extra);
-                return;
-            }
+            model.tryLoginUser(user);
+        } catch (ValidationException | NullPointerException e) {
+            this.redirectToLogin(extra);
         }
-
-        Intent intent = new Intent(getContext(), EnterActivity.class);
-        intent.putExtras(extra);
-        getContext().startActivity(intent);
-        finishActivity();
     }
 
     @Override
-    public void finishActivity() {
+    public void onSuccessLogin() {
+        view.onSuccess();
+        this.redirectToHome(null);
+    }
+
+    @Override
+    public void onFailureLogin(RuntimeException e) {
+    }
+
+    @Override
+    public void redirectToLogin(Bundle extra) {
+        Intent intent = new Intent(getContext(), EnterActivity.class);
+
+        if (extra != null) {
+            intent.putExtras(extra);
+        }
+
+        getContext().startActivity(intent);
+        view.get().finish();
+    }
+
+    @Override
+    public void redirectToHome(Bundle extra) {
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        intent.putExtras(extra);
+        getContext().startActivity(intent);
         view.get().finish();
     }
 
@@ -54,6 +75,7 @@ public class LoginPresenterImp implements LoginMVP.Presenter{
 
     @Override
     public void onDestroy() {
+        model.onDestroy();
         model = null;
         view = null;
     }

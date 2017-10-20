@@ -1,5 +1,9 @@
 package br.edu.ladoss.simpifladoss.models;
 
+import br.edu.ladoss.simpifladoss.exception.ValidationException;
+import br.edu.ladoss.simpifladoss.util.StringUtil;
+import br.edu.ladoss.simpifladoss.validation.EmailValidator;
+
 /**
  * Created by Rennan on 18/10/17.
  */
@@ -22,7 +26,12 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        EmailValidator emailValidator = new EmailValidator();
+        if (emailValidator.validate(email))
+            this.email = email;
+        else {
+            throw new ValidationException("Email incorreto!");
+        }
     }
 
     public String getSenha() {

@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import br.edu.ladoss.simpifladoss.models.User;
 import br.edu.ladoss.simpifladoss.mvp.EnterMVP;
-import br.edu.ladoss.simpifladoss.view.activities.HomeActivity;
 import br.edu.ladoss.simpifladoss.view.activities.LoginActivity;
 
 /**
