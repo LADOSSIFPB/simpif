@@ -25,7 +25,6 @@ public interface SearchMVP extends MVPApp {
     }
 
     interface Presenter extends MVPApp.Presenter {
-        void sendCodeToServer(String code);
 
         void onSendError(String message);
         void onSendSucess();
@@ -33,6 +32,8 @@ public interface SearchMVP extends MVPApp {
         void requestOrderAttendees(String orderRef);
 
         void updateAttendees(List<Attendee> attendees);
+
+        void onClickAttendee(Attendee attendee);
     }
 
 }

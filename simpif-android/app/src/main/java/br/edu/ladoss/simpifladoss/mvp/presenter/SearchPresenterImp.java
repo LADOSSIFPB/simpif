@@ -30,34 +30,38 @@ public class SearchPresenterImp implements SearchMVP.Presenter{
     }
 
     @Override
-    public void sendCodeToServer(String code) {
-        model.sendCodeToServer(code);
-    }
-
-    @Override
     public void onSendError(String message) {
         view.showMessage(message);
     }
 
     @Override
     public void onSendSucess() {
-        DialogInterface.OnClickListener neutral = new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+        view.get().finish();
+        onDestroy();
+    }
 
-                view.get().finish();
-                onDestroy();
-            }
-        };
+    @Override
+    public void onClickAttendee(final Attendee attendee) {
+        if(attendee.hasArrived()) {
+            view.showMessage(getContext().getString(R.string.already_checked));
+        } else {
+            final String code = Integer.toString(attendee.getPrivateRefNum());
+            DialogInterface.OnClickListener neutral = new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    model.sendCodeToServer(code);
+                }
+            };
 
-        DialogInterface.OnClickListener dismiss = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        };
+            DialogInterface.OnClickListener dismiss = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            };
 
-        view.showDialogConfirmation(neutral, dismiss);
+            view.showDialogConfirmation(neutral, dismiss);
+        }
     }
 
     @Override

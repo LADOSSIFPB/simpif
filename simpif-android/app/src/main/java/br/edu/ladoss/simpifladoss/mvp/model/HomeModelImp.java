@@ -9,12 +9,16 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.mvp.HomeMVP;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
+import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
+import br.edu.ladoss.simpifladoss.util.StringUtil;
 import br.edu.ladoss.simpifladoss.view.activities.EnterActivity;
 import br.edu.ladoss.simpifladoss.view.activities.SearchActivity;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
+
+import static br.edu.ladoss.simpifladoss.util.PreferencesUtils.getAccessKeyOnSharedPreferences;
 
 /**
  * Created by Rennan on 07/09/2017.
@@ -41,7 +45,9 @@ public class HomeModelImp implements HomeMVP.Model {
     public void sendCodeToServer(String code) {
         ConnectionServer.getInstance().updateServiceAdress();
 
-        Call<Void> call = ConnectionServer.getInstance().getService().checkin(code);
+        String key = getAccessKeyOnSharedPreferences(presenter.getContext());
+
+        Call<Void> call = ConnectionServer.getInstance().getService().checkin("Basic " + key, code);
 
         call.enqueue(new Callback<Void>() {
             @Override

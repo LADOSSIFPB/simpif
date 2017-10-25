@@ -1,6 +1,7 @@
 package br.edu.ladoss.simpifladoss.mvp;
 
 import br.edu.ladoss.simpifladoss.MVPApp;
+import br.edu.ladoss.simpifladoss.models.User;
 
 /**
  * Created by Rennan on 06/09/2017.
@@ -9,14 +10,14 @@ import br.edu.ladoss.simpifladoss.MVPApp;
 public interface EnterMVP {
 
     interface Model extends MVPApp.Model {
-        void doLogin();
+        void login(User user);
     }
 
     interface View extends MVPApp.View {
-
+        void showMessage(String msg);
     }
 
     interface Presenter extends MVPApp.Presenter {
-        void doLogin();
+        void login(User user);
     }
 }

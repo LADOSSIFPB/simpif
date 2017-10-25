@@ -22,6 +22,7 @@ import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.mvp.HomeMVP;
 import br.edu.ladoss.simpifladoss.mvp.model.HomeModelImp;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
+import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
 import br.edu.ladoss.simpifladoss.view.activities.EnterActivity;
 import br.edu.ladoss.simpifladoss.view.activities.SearchActivity;
 import retrofit.Call;
@@ -102,6 +103,7 @@ public class HomePresenterImp implements HomeMVP.Presenter {
         DialogInterface.OnClickListener neutral = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                PreferencesUtils.setAccessKeyOnSharedPreferences(view.getContext(), "");
 
                 getContext().startActivity(new Intent(getContext(), EnterActivity.class));
                 getActivity().finish();

@@ -54,7 +54,6 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
         searchView.setQueryHint(getContext().getString(R.string.search));
         searchView.onActionViewExpanded();
 
-
         if(savedInstanceState != null){
             HomeMVP.Presenter auxPresenter = (HomeMVP.Presenter) savedInstanceState.getSerializable(HomeMVP.BUNDLE);
             if(auxPresenter != null){
@@ -74,14 +73,9 @@ public class HomeActivity extends AppCompatActivity implements HomeMVP.View{
 
     }
 
-    @OnClick(R.id.layoutCheckin)
+    @OnClick({R.id.layoutCheckin, R.id.chekin_btn, R.id.icon_barcode})
     public void openScanner(View view) {
         presenter.openScanner();
-    }
-
-    //@OnClick(R.id.btnManual)
-    public void openManualCheckin(View view) {
-        presenter.openManualCheckin();
     }
 
     @Override
