@@ -4,6 +4,7 @@ from flask_cors import CORS
 from common.database import db
 from resources.AttendeeResource import AttendeeResource
 from resources.OrderResource import OrderResource, OrderAttendeesResource
+from resources.LoginResource import LoginResource
 
 app = Flask(__name__)
 
@@ -19,6 +20,7 @@ api = Api(api_bp, prefix='/api')
 api.add_resource(AttendeeResource, '/checkin/attendees/<string:codigo>')
 api.add_resource(OrderResource, '/checkin/orders')
 api.add_resource(OrderAttendeesResource, '/checkin/orders/references/<string:orderRef>')
+api.add_resource(LoginResource, '/checkin/login')
 
 
 app.register_blueprint(api_bp)
