@@ -8,6 +8,7 @@ import br.edu.ladoss.simpifladoss.models.User;
 import br.edu.ladoss.simpifladoss.mvp.LoginMVP;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
 import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
+import br.edu.ladoss.simpifladoss.util.StringUtil;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -50,7 +51,7 @@ public class LoginModelImp implements LoginMVP.Model {
             public void onResponse(Response<String> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
                     Log.i(this.getClass().getName(), " chave recuperada com sucesso");
-                    PreferencesUtils.setAccessKeyOnSharedPreferences(presenter.getContext(), response.body());
+                    PreferencesUtils.setAccessKeyOnSharedPreferences(presenter.getContext(), StringUtil.criptografarBase64(response.body() + ":unused").replace("\n", ""));
                     tryLoginUser(user);
                 } else {
                     Log.i(this.getClass().getName(), " a chave não foi recuperada com êxito");

@@ -1,5 +1,8 @@
 package br.edu.ladoss.simpifladoss.util;
 
+import android.util.Base64;
+import android.util.Log;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,42 +22,7 @@ public class StringUtil {
 		
 		return isEmptyOrNull;		
 	}
-	
-	public static double tirarMascaraOrcamento(String orcamento) {
 
-		orcamento = orcamento.replace(".", "");
-		orcamento = orcamento.replace(",", ".");
-
-		Double orc = Double.parseDouble(orcamento);
-
-		return orc;
-	}
-
-	public static String tirarMascaraCNPJ(String cnpj) {
-
-		cnpj = cnpj.replace(".", "");
-		cnpj = cnpj.replace("/", "");
-		cnpj = cnpj.replace("-", "");
-
-		return cnpj;
-	}
-
-	public static String criptografarSha256(String valorPlano)
-			throws NoSuchAlgorithmException, UnsupportedEncodingException {
-
-		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
-		byte messageDigest[] = algorithm.digest(valorPlano.getBytes("UTF-8"));
-
-		StringBuilder hexString = new StringBuilder();
-
-		for (byte b : messageDigest) {
-			hexString.append(String.format("%02X", 0xFF & b));
-		}
-
-		String senha = hexString.toString();
-
-		return senha;
-	}
 	
 	public static String replaceLastToEmptySpace(String text, String regex) {
 		return replaceLast(text, regex, STRING_VAZIO);
@@ -64,4 +32,22 @@ public class StringUtil {
 			String replacement) {
 		return text.replaceFirst("(?s)(.*)" + regex, "$1" + replacement);
 	}
+
+    public static String criptografarBase64(String valor){
+
+        try {
+
+            valor = Base64.encodeToString(valor.getBytes("UTF-8"), Base64.DEFAULT);
+
+        } catch (Exception ex) {
+
+            throw new IllegalStateException("Base-64: Cannot encode with UTF-8");
+        }
+
+        Log.i("teste", valor);
+
+        return valor;
+    }
+
+
 }

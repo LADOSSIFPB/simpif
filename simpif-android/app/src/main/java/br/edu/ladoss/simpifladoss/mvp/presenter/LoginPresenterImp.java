@@ -41,11 +41,12 @@ public class LoginPresenterImp implements LoginMVP.Presenter {
     @Override
     public void onSuccessLogin() {
         view.onSuccess();
-        this.redirectToHome(null);
+        this.redirectToHome();
     }
 
     @Override
     public void onFailureLogin(RuntimeException e) {
+        redirectToLogin(null);
     }
 
     @Override
@@ -61,9 +62,8 @@ public class LoginPresenterImp implements LoginMVP.Presenter {
     }
 
     @Override
-    public void redirectToHome(Bundle extra) {
+    public void redirectToHome() {
         Intent intent = new Intent(getContext(), HomeActivity.class);
-        intent.putExtras(extra);
         getContext().startActivity(intent);
         view.get().finish();
     }

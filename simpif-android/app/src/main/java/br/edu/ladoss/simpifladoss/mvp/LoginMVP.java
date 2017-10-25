@@ -29,7 +29,7 @@ public interface LoginMVP {
         void onSuccessLogin();
         void onFailureLogin(RuntimeException e);
         void redirectToLogin(Bundle extra);
-        void redirectToHome(Bundle extra);
+        void redirectToHome();
     }
 
 }

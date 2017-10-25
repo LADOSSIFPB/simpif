@@ -11,6 +11,7 @@ import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.exception.FormLoginException;
 import br.edu.ladoss.simpifladoss.mvp.LoginMVP;
 import br.edu.ladoss.simpifladoss.mvp.presenter.LoginPresenterImp;
+import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginMVP.View{
@@ -26,6 +27,8 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View{
         startAnimation(findViewById(R.id.logo_simpif));
         startAnimation(findViewById(R.id.logo_ladoss));
         startAnimation(findViewById(R.id.logo_if));
+
+        PreferencesUtils.setAccessKeyOnSharedPreferences(getContext(), "");
 
         presenter = new LoginPresenterImp(this);
         presenter.doLogin(getIntent().getExtras());
