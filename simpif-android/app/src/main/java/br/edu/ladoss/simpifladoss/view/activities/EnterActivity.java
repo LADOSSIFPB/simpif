@@ -50,7 +50,8 @@ public class EnterActivity extends AppCompatActivity implements EnterMVP.View{
     }
 
     private boolean isValid() {
-
+        /*TODO Refact deve ser feito pois a validação não deve ser feita na camada de view.
+         Tente levar para o presenter pois podemos fazer os testes unitários da validação separados*/
         String identificador = identificadorEditText.getText().toString();
         Boolean validated = Validate.validaIdentificador(identificador);
 

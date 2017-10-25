@@ -24,6 +24,9 @@ public class EnterModelImp implements EnterMVP.Model {
         bundle.putString("senha", user.getSenha());
         intent.putExtras(bundle);
 
+        /* Esse tipo de chamada não deve ser feita no modelo. Lembre-se que MODELO não
+        conhece VIEW. Você não pode chamar uma diretamente sem pedir para o presenter que o faça.
+         */
         presenter.getContext().startActivity(intent);
     }
 
