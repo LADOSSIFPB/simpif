@@ -3,11 +3,12 @@
 from flask_restful import Resource
 from flask import Response
 from common.database import db
+from common.auth import auth
 from models.Attendee import Attendee
 import datetime
 
 class AttendeeResource(Resource):
-
+    @auth.login_required
     def get(self, codigo):
         try:
             attendees = Attendee.query.filter_by(privateRefNum=codigo).first()
