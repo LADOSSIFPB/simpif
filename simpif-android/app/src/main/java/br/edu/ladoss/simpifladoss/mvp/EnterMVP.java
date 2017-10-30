@@ -1,5 +1,8 @@
 package br.edu.ladoss.simpifladoss.mvp;
 
+import android.content.Intent;
+import android.widget.EditText;
+
 import br.edu.ladoss.simpifladoss.MVPApp;
 import br.edu.ladoss.simpifladoss.models.User;
 
@@ -15,9 +18,13 @@ public interface EnterMVP {
 
     interface View extends MVPApp.View {
         void showMessage(String msg);
+        void setInvalidEmail();
+        void setInvalidPassword();
     }
 
     interface Presenter extends MVPApp.Presenter {
         void login(User user);
+        void redirectToLoginActivity(Intent intent);
+        Boolean isLoginValid(String identificador, String senha);
     }
 }

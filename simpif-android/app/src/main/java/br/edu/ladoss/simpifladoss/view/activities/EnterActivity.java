@@ -46,32 +46,21 @@ public class EnterActivity extends AppCompatActivity implements EnterMVP.View{
 
     @OnClick(R.id.loginButton)
     public void login() {
-        if(isValid()) presenter.login(new User(identificadorEditText.getText().toString().trim(), senhaEditText.getText().toString()));
+        presenter.login(new User(identificadorEditText.getText().toString().trim(), senhaEditText.getText().toString()));
     }
 
-    private boolean isValid() {
-        /*TODO Refact deve ser feito pois a validação não deve ser feita na camada de view.
-         Tente levar para o presenter pois podemos fazer os testes unitários da validação separados*/
-        String identificador = identificadorEditText.getText().toString();
-        Boolean validated = Validate.validaIdentificador(identificador);
+    @Override
+    public void setInvalidEmail() {
+        identificadorEditText.setError(getString(R.string.invalidEmail));
+        identificadorEditText.setFocusable(true);
+        identificadorEditText.requestFocus();
+    }
 
-        if (!validated) {
-            identificadorEditText.setError("E-mail inválido.");
-            identificadorEditText.setFocusable(true);
-            identificadorEditText.requestFocus();
-            return false;
-        }
-
-        String senha = senhaEditText.getText().toString();
-
-        if (senha == null || senha.isEmpty()) {
-            senhaEditText.setError("Senha inválida.");
-            senhaEditText.setFocusable(true);
-            senhaEditText.requestFocus();
-            return false;
-        }
-
-        return true;
+    @Override
+    public void setInvalidPassword() {
+        senhaEditText.setError(getString(R.string.invalidPass));
+        senhaEditText.setFocusable(true);
+        senhaEditText.requestFocus();
     }
 
     @Override
