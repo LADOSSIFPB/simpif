@@ -60,7 +60,7 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
     @Override
     public void showDialogConfirmation(DialogInterface.OnClickListener listenerNeutral, DialogInterface.OnClickListener listenerNegative) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(this.getString(R.string.checkin));
+        alertDialog.setTitle(this.getString(R.string.manual_checkin));
         alertDialog.setMessage(presenter.getContext().getString(R.string.checkin_confirmation));
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.confirm), listenerNeutral);
 

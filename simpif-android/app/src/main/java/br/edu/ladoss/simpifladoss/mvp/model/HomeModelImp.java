@@ -62,7 +62,7 @@ public class HomeModelImp implements HomeMVP.Model {
 
             @Override
             public void onFailure(Throwable t) {
-                presenter.onSendError(presenter.getContext().getString(R.string.on_code_error));
+                presenter.onSendError(presenter.getContext().getString(R.string.fail_connect_server));
             }
         });
     }

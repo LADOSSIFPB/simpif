@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Simpif Ladoss</string>
+    <string name="app_name">Sésamo Ingressos</string>
 
     <string name="no">Não</string>
     <string name="quit">Sair</string>
@@ -21,4 +21,7 @@
     <string name="already_checked">Checkin já realizado.</string>
     <string name="invalidPass">Senha inválida.</string>
     <string name="invalidEmail">E-mail inválido.</string>
+    <string name="manual_checkin">Check-in por código</string>
+    <string name="fail_connect_server">Falha ao conectar com o servidor.</string>
+    <string name="code_not_found">Código não encontrado.</string>
 </resources>

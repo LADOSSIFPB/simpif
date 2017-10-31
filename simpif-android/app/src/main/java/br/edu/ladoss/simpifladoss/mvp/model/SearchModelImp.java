@@ -50,14 +50,14 @@ public class SearchModelImp implements SearchMVP.Model{
                         presenter.updateAttendees(response.body());
                     }
                     else
-                        presenter.onSendError(presenter.getContext().getString(R.string.on_code_error));
+                        presenter.onSendError(presenter.getContext().getString(R.string.code_not_found));
                 }else
                     presenter.onSendError(presenter.getContext().getString(R.string.on_code_error));
             }
 
             @Override
             public void onFailure(Throwable t) {
-                presenter.onSendError(presenter.getContext().getString(R.string.on_code_error));
+                presenter.onSendError(presenter.getContext().getString(R.string.fail_connect_server));
             }
         });
     }
@@ -83,7 +83,7 @@ public class SearchModelImp implements SearchMVP.Model{
 
             @Override
             public void onFailure(Throwable t) {
-                presenter.onSendError(presenter.getContext().getString(R.string.on_code_error));
+                presenter.onSendError(presenter.getContext().getString(R.string.fail_connect_server));
             }
         });
     }
