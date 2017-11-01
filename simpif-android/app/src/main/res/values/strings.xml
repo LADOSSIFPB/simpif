@@ -22,6 +22,8 @@
     <string name="invalidPass">Senha inválida.</string>
     <string name="invalidEmail">E-mail inválido.</string>
     <string name="manual_checkin">Check-in por código</string>
-    <string name="fail_connect_server">Falha ao conectar com o servidor.</string>
+    <string name="fail_connect_server">Falha no servidor.</string>
     <string name="code_not_found">Código não encontrado.</string>
+    <string name="about">Sobre</string>
+    <string name="about_content">Sistema de gerenciamento de ingressos para eventos do IFPB.</string>
 </resources>

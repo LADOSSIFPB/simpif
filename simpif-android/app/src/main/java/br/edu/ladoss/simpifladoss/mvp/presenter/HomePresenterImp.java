@@ -23,6 +23,7 @@ import br.edu.ladoss.simpifladoss.mvp.HomeMVP;
 import br.edu.ladoss.simpifladoss.mvp.model.HomeModelImp;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
 import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
+import br.edu.ladoss.simpifladoss.view.activities.AboutActivity;
 import br.edu.ladoss.simpifladoss.view.activities.EnterActivity;
 import br.edu.ladoss.simpifladoss.view.activities.SearchActivity;
 import retrofit.Call;
@@ -57,6 +58,8 @@ public class HomePresenterImp implements HomeMVP.Presenter {
         int id = item.getItemId();
         if (id == R.id.sair) {
             exit();
+        }else if(id == R.id.sobre) {
+            about();
         }
     }
 
@@ -119,6 +122,11 @@ public class HomePresenterImp implements HomeMVP.Presenter {
 
 
         view.showDialogExit(neutral, dismiss);
+    }
+
+    @Override
+    public void about() {
+        getContext().startActivity(new Intent(getContext(), AboutActivity.class));
     }
 
     @Override

@@ -13,4 +13,9 @@
         android:icon="@drawable/exittoapp"
         android:title="@string/exit"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/sobre"
+        android:icon="@drawable/exittoapp"
+        android:title="@string/about"
+        app:showAsAction="never"/>
 </menu>

@@ -14,10 +14,11 @@
         <meta-data
             android:name="android.app.default_searchable"
             android:value="br.edu.ladoss.simpifladoss.view.activities.SearchActivity" />
+
         <activity android:name=".view.activities.HomeActivity" />
         <activity
             android:name=".view.activities.EnterActivity"
-            android:windowSoftInputMode="adjustPan|adjustNothing"/>
+            android:windowSoftInputMode="adjustPan|adjustNothing" />
         <activity
             android:name=".view.activities.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -40,6 +41,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <activity android:name=".view.activities.AboutActivity"></activity>
     </application>
 
 </manifest>
