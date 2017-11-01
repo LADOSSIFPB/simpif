@@ -12,9 +12,9 @@ class LoginResource(Resource):
     # POST /login
     #@marshal_with(token_fields)
     def post(self):
-        current_app.logger.info("Post - Login")
+        dados = request.json
+        current_app.logger.info("Post - Login - User: %s" % dados['email'])
         try:
-            dados = request.json
             usuario = User.query.filter_by(email=dados['email']).first()
             if usuario is None:
                 current_app.logger.info("Usuário não encontrado")
@@ -25,6 +25,7 @@ class LoginResource(Resource):
                     abort(401)
                 else:
                     usuario.generate_auth_token()
+                    current_app.logger.info("Usuário logado - User: %s" % dados['email'])
 
         except exc.SQLAlchemyError:
             current_app.logger.error("Exceção")

@@ -10,20 +10,24 @@ import datetime
 class AttendeeResource(Resource):
     @auth.login_required
     def get(self, codigo):
-        current_app.logger.info("Get - Attendees - %s" % codigo)
+        current_app.logger.info("Get - Attendee - %s" % codigo)
         try:
-            attendees = Attendee.query.filter_by(privateRefNum=codigo).first()
-            if (attendees.hasArrived):
+            attendee = Attendee.query.filter_by(privateRefNum=codigo).first()
+            if (attendee.hasArrived):
+
+                current_app.logger.info("Checkin já foi realizado antes - Código: %s" % codigo)
+
                 return Response("Check-in já foi realizado antes.", 200, mimetype='text/plain')
+
             arrivalTime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            attendees.hasArrived = True
-            attendees.arrivalTime = arrivalTime
+            attendee.hasArrived = True
+            attendee.arrivalTime = arrivalTime
             db.session.commit()
 
-            current_app.logger.info("Checkin realizado com sucesso")
+            current_app.logger.info("Checkin realizado com sucesso - Código: %s" % codigo)
 
             return Response("Checkin realizado com sucesso.", 200, mimetype='text/plain')
 
         except AttributeError:
-            current_app.logger.info("Código invalido")
+            current_app.logger.info("Código invalido - Código: %s" % codigo)
             return Response("Código inválido.", 404, mimetype="text/plain")

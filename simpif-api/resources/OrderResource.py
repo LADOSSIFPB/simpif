@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask_restful import Resource, marshal_with
-from flask import current_app
+from flask import Response, current_app
 from common.auth import auth
 from common.database import db
 from models.Order import Order, order_fields
@@ -28,4 +28,9 @@ class OrderAttendeesResource(Resource):
                          .join(Order, Order.id == Attendee.order_id )
                          .filter(Order.order_reference == orderRef)
                          .all())
+        if len(attendees) == 0:
+            current_app.logger.info("Código de compra não existente - Código: %s" % orderRef)
+            return attendees, 200
+
+        current_app.logger.info("Encontrado %i attendees" % len(attendees))
         return attendees, 200
