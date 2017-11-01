@@ -55,14 +55,14 @@ public class LoginModelImp implements LoginMVP.Model {
                     tryLoginUser(user);
                 } else {
                     Log.i(this.getClass().getName(), " a chave não foi recuperada com êxito");
-                    presenter.onFailureLogin(new FormLoginException("Usuário inválido"));
+                    presenter.onFailureLogin(new FormLoginException("Usuário inválido"), user);
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 Log.e(this.getClass().getName(), t.getMessage());
-                presenter.onFailureLogin(new RuntimeException(t));
+                presenter.onFailureLogin(new RuntimeException(t), user);
             }
         });
     }

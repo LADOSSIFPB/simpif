@@ -29,6 +29,7 @@ public interface HomeMVP {
     interface Presenter extends MVPApp.Presenter {
         void showMessage(String msg);
         void exit();
+        void about();
         void onActivityResult(int requestCode, int resultCode, Intent data);
         void openScanner();
         Activity getActivity();

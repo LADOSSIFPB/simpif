@@ -45,8 +45,10 @@ public class LoginPresenterImp implements LoginMVP.Presenter {
     }
 
     @Override
-    public void onFailureLogin(RuntimeException e) {
-        redirectToLogin(null);
+    public void onFailureLogin(RuntimeException e, User user) {
+        Bundle bundle = new Bundle();
+        bundle.putString("email", user.getEmail());
+        redirectToLogin(bundle);
     }
 
     @Override

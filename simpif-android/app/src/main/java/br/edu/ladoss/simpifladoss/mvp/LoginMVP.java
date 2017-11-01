@@ -27,7 +27,7 @@ public interface LoginMVP {
     interface Presenter extends MVPApp.Presenter {
         void doLogin(Bundle extra);
         void onSuccessLogin();
-        void onFailureLogin(RuntimeException e);
+        void onFailureLogin(RuntimeException e, User user);
         void redirectToLogin(Bundle extra);
         void redirectToHome();
     }

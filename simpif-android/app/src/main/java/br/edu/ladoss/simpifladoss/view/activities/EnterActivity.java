@@ -40,7 +40,7 @@ public class EnterActivity extends AppCompatActivity implements EnterMVP.View{
             identificadorEditText.setText(bundle.getString("email"));
             senhaEditText.requestFocus();
 
-            showMessage("Login inválido.");
+            setInvalidPassword();
         }
     }
 
