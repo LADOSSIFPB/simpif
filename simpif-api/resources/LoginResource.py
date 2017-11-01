@@ -12,21 +12,22 @@ class LoginResource(Resource):
     # POST /login
     #@marshal_with(token_fields)
     def post(self):
+        current_app.logger.info("Post - Login")
         try:
             dados = request.json
             usuario = User.query.filter_by(email=dados['email']).first()
             if usuario is None:
-                print("Usuario não encontrado")
+                current_app.logger.info("Usuário não encontrado")
                 abort(401)
             else:
                 if usuario.verificar_senha(dados['senha']) == False:
-                    print("Senha errada")
+                    current_app.logger.info("Senha errada")
                     abort(401)
                 else:
                     usuario.generate_auth_token()
 
         except exc.SQLAlchemyError:
-            print("Exceção")
+            current_app.logger.error("Exceção")
             return "", 404
 
         return usuario.token, 200

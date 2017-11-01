@@ -1,7 +1,5 @@
 from common.database import db
 from flask_restful import fields, current_app
-from werkzeug.security import generate_password_hash, check_password_hash
-import hashlib
 import base64
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
@@ -28,15 +26,9 @@ class User(db.Model):
         self.senha = senha
         self.id = id
         self.token = token
-    '''
-    def set_senha(self, senha):
-        self.senha = generate_password_hash(senha)
-    '''
 
     def verificar_senha(self, password):
         pass_hash = base64.b64encode(password.encode('utf-8'))
-        print(pass_hash.decode('utf-8'))
-        print(self.senha)
         if pass_hash.decode('utf-8') == self.senha:
             return True
         else:
@@ -45,12 +37,11 @@ class User(db.Model):
     def generate_auth_token(self, expiration=None):
         s = Serializer('123456', expires_in=expiration)
         dumps = s.dumps({'id': self.id})
-        print(self.id)
         self.token = dumps.decode('ascii')
 
     @staticmethod
     def verify_auth_token(token):
-        current_app.logger.info("Token: %s" % (token))
+        current_app.logger.info("Token: %s" % token)
         s = Serializer('123456')
         try:
             data = s.loads(token)
@@ -60,6 +51,3 @@ class User(db.Model):
             return None  # invalid token
         user = User.query.get(data['id'])
         return user
-
-    '''def __str__(self):
-        return '<Usuario %r>' % self.email'''
