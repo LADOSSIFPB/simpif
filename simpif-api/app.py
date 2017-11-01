@@ -23,7 +23,7 @@ app.logger.addHandler(handler)
 db.init_app(app)
 
 api_bp = Blueprint('api', __name__)
-api = Api(api_bp, prefix='/api')
+api = Api(api_bp, prefix='/attendize/api')
 
 api.add_resource(AttendeeResource, '/checkin/attendees/<string:codigo>')
 api.add_resource(OrderResource, '/checkin/orders')
@@ -33,7 +33,7 @@ api.add_resource(LoginResource, '/checkin/login')
 
 app.register_blueprint(api_bp)
 
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/attendize/api/*": {"origins": "*"}})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

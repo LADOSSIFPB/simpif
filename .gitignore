@@ -68,3 +68,5 @@ simpif-android/.idea/
 simpif-android/.gradle/
 
 simpif-api/\.idea/workspace\.xml
+
+simpif-api/checkin-api\.log
