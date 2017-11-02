@@ -28,10 +28,12 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View{
         startAnimation(findViewById(R.id.logo_ladoss));
         startAnimation(findViewById(R.id.logo_if));
 
+        //Por que está sendo setado isso aqui?
         PreferencesUtils.setAccessKeyOnSharedPreferences(getContext(), "");
 
         presenter = new LoginPresenterImp(this);
-        presenter.doLogin(getIntent().getExtras());
+        //presenter.doLogin(getIntent().getExtras());
+        presenter.redirectToHome();
     }
 
     public void startAnimation(View view){

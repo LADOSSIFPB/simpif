@@ -25,5 +25,9 @@
     <string name="fail_connect_server">Falha no servidor.</string>
     <string name="code_not_found">Código não encontrado.</string>
     <string name="about">Sobre</string>
-    <string name="about_content">Sistema de gerenciamento de ingressos para eventos do IFPB.</string>
+    <string name="about_content">Sistema de gerenciamento de ingressos para eventos do IFPB desenvolvido pelo Laboratório de Desenvolvimento de Software e Startups.</string>
+    <string name="name">Nome:</string>
+    <string name="github">Github:</string>
+    <string name="contribuition">Contribuição:</string>
+    <string name="ladoss">Laboratório de Desenvolvimento de Software e Startups</string>
 </resources>

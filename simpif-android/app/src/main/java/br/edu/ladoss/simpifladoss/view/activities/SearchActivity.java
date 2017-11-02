@@ -78,7 +78,7 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
                 gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
                 recycle.setLayoutManager(gridLayoutManager);
-                recycle.setAdapter(new AttendeeAdapter(context, attendees, new RecycleButtonClicked() {
+                recycle.setAdapter(new AttendeeAdapter(context, attendees, new RecycleButtonClicked<Attendee>() {
                     @Override
                     public void onClickCallback(Attendee attendee) {
                         presenter.onClickAttendee(attendee);

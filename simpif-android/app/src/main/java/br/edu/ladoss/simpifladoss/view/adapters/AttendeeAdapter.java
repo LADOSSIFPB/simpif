@@ -23,7 +23,7 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomVi
 
     private List<Attendee> attendees;
     private LayoutInflater inflater;
-    private RecycleButtonClicked view;
+    private RecycleButtonClicked<Attendee> view;
 
     public AttendeeAdapter(Context context, List<Attendee> myList, RecycleButtonClicked view) {
         if (myList == null) {
