@@ -84,8 +84,8 @@ public class ContribuitionAdapter extends RecyclerView.Adapter<ContribuitionAdap
         holder.github.setText(contribuitor.getGithub());
         holder.function.setText(contribuitor.getFunction());
         Picasso.with(inflater.getContext()).load(contribuitor.getProfile_image())
-                .placeholder(R.drawable.ic_mood_black_24dp)
-                .error(R.drawable.ic_mood_black_24dp)
+//                .placeholder(R.drawable.ic_mood_black_24dp)
+//                .error(R.drawable.ic_mood_black_24dp)
                 .into(holder.profile);
 
     }

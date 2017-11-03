@@ -12,6 +12,10 @@
         android:title="@string/about"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/privacitypolicy"
+        android:title="@string/policy"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/sair"
         android:icon="@drawable/exittoapp"
         android:title="@string/exit"
