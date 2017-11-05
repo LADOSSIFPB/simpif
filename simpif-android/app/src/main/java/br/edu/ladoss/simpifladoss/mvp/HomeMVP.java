@@ -30,6 +30,7 @@ public interface HomeMVP {
         void showMessage(String msg);
         void exit();
         void about();
+        void privacyPolicy();
         void onActivityResult(int requestCode, int resultCode, Intent data);
         void openScanner();
         Activity getActivity();

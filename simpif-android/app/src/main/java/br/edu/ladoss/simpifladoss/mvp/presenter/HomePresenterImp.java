@@ -5,6 +5,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
@@ -60,6 +61,8 @@ public class HomePresenterImp implements HomeMVP.Presenter {
             exit();
         }else if(id == R.id.sobre) {
             about();
+        }else if(id == R.id.privacitypolicy) {
+            privacyPolicy();
         }
     }
 
@@ -127,6 +130,12 @@ public class HomePresenterImp implements HomeMVP.Presenter {
     @Override
     public void about() {
         getContext().startActivity(new Intent(getContext(), AboutActivity.class));
+    }
+
+    @Override
+    public void privacyPolicy() {
+        Intent browser= new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/LADOSSIFPB/simpif/wiki/Privacy-Policy"));
+        getContext().startActivity(browser);
     }
 
     @Override

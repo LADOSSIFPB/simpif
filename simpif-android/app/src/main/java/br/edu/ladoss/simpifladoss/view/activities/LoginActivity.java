@@ -32,8 +32,7 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View{
         PreferencesUtils.setAccessKeyOnSharedPreferences(getContext(), "");
 
         presenter = new LoginPresenterImp(this);
-        //presenter.doLogin(getIntent().getExtras());
-        presenter.redirectToHome();
+        presenter.doLogin(getIntent().getExtras());
     }
 
     public void startAnimation(View view){
