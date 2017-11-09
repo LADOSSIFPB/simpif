@@ -28,6 +28,7 @@ class OrderAttendeesResource(Resource):
                          .join(Order, Order.id == Attendee.order_id )
                          .filter(Order.order_reference == orderRef)
                          .all())
+
         if len(attendees) == 0:
             current_app.logger.info("Código de compra não existente - Código: %s" % orderRef)
             return attendees, 200

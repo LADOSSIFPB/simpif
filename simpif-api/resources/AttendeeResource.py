@@ -18,15 +18,20 @@ class AttendeeResource(Resource):
                 current_app.logger.info("Checkin já foi realizado antes - Código: %s" % codigo)
 
                 return Response("Check-in já foi realizado antes.", 200, mimetype='text/plain')
+            if (attendee.isCancelled):
+
+                current_app.logger.info("Inscrição cancelada - Código: %s" % codigo)
+
+                return Response("Inscrição cancelada.", 404, mimetype='text/plain')
 
             arrivalTime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             attendee.hasArrived = True
             attendee.arrivalTime = arrivalTime
             db.session.commit()
 
-            current_app.logger.info("Checkin realizado com sucesso - Código: %s" % codigo)
+            current_app.logger.info("Checkin realizado - Código: %s" % codigo)
 
-            return Response("Checkin realizado com sucesso.", 200, mimetype='text/plain')
+            return Response("Checkin realizado.", 200, mimetype='text/plain')
 
         except AttributeError:
             current_app.logger.info("Código invalido - Código: %s" % codigo)
