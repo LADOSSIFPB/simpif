@@ -31,4 +31,5 @@
     <string name="contribuition">Contribuição:</string>
     <string name="ladoss">Laboratório de Desenvolvimento de Software e Startups</string>
     <string name="policy">Política de privacidade</string>
+    <string name="attendee_cancelled">Esta inscrição foi cancelada.</string>
 </resources>

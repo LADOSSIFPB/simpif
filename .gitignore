@@ -70,3 +70,5 @@ simpif-android/.gradle/
 simpif-api/\.idea/workspace\.xml
 
 simpif-api/checkin-api\.log
+
+simpif-android/local\.properties

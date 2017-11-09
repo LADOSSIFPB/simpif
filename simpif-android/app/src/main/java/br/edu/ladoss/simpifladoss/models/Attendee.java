@@ -1,7 +1,5 @@
 package br.edu.ladoss.simpifladoss.models;
 
-import java.util.Date;
-
 /**
  * Created by Rennan on 28/09/17.
  */
@@ -15,10 +13,13 @@ public class Attendee {
     private int privateRefNum;
     private boolean hasArrived;
     private String arrivalTime;
+    private boolean isCancelled;
 
-    private int orderId;
+    private int order_id;
 
-    public Attendee(int id, String firstName, String lastName, String email, int privateRefNum, boolean hasArrived, String arrivalTime, int orderId) {
+    private String ticket_title;
+
+    public Attendee(int id, String firstName, String lastName, String email, int privateRefNum, boolean hasArrived, String arrivalTime, int order_id, String ticket_title, boolean isCancelled) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,7 +29,11 @@ public class Attendee {
         this.hasArrived = hasArrived;
         this.arrivalTime = arrivalTime;
 
-        this.orderId = orderId;
+        this.order_id = order_id;
+
+        this.ticket_title = ticket_title;
+
+        this.isCancelled = isCancelled;
     }
 
     public int getId() {
@@ -60,7 +65,14 @@ public class Attendee {
     }
 
     public int getOrderId() {
-        return orderId;
+        return order_id;
     }
 
+    public String getTicketTitle() {
+        return ticket_title;
+    }
+
+    public boolean isCancelled() {
+        return isCancelled;
+    }
 }

@@ -55,7 +55,7 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomVi
     @Override
     public void onBindViewHolder(RoomViewHolder holder, int position) {
         holder.nome.setText(attendees.get(position).getFirstName() + " " + attendees.get(position).getLastName());
-        holder.refNumber.setText(Integer.toString(attendees.get(position).getPrivateRefNum()));
+        holder.ticketTitle.setText(attendees.get(position).getTicketTitle());
         if(attendees.get(position).hasArrived())
             holder.checked.setChecked(true);
     }
@@ -66,13 +66,13 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomVi
     }
 
     public class RoomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView nome, refNumber;
+        TextView nome, ticketTitle;
         CheckBox checked;
 
         public RoomViewHolder(View item) {
             super(item);
             nome = (TextView) item.findViewById(R.id.nomeAttendee);
-            refNumber = (TextView) item.findViewById(R.id.privateNumber);
+            ticketTitle = (TextView) item.findViewById(R.id.ticketTitle);
             checked = (CheckBox) item.findViewById(R.id.checked);
             item.setOnClickListener(this);
         }

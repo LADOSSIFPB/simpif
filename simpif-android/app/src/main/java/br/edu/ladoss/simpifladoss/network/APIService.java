@@ -15,7 +15,7 @@ import retrofit.http.Path;
 public interface APIService {
 
     @GET("checkin/attendees/{codigo}")
-    Call<Void> checkin(@Header("Authorization") String accessKey, @Path("codigo") String codigo);
+    Call<String> checkin(@Header("Authorization") String accessKey, @Path("codigo") String codigo);
 
     @GET("checkin/orders")
     Call<List<Order>> orders(@Header("Authorization") String accessKey);

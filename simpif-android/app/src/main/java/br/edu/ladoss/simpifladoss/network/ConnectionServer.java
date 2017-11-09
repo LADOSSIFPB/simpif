@@ -5,7 +5,7 @@ import retrofit.Retrofit;
 
 public class ConnectionServer {
 
-    private static final String URL_BASE = "http://ingressos.ifpb.edu.br:8443/attendize/api/"; //http://10.1.134.159:5000/api/
+    private static final String URL_BASE = "http://10.1.134.157:5000/attendize/api/"; //http://ingressos.ifpb.edu.br:8443/attendize/api/
     private static APIService service;
     private static ConnectionServer ourInstance = new ConnectionServer();
 

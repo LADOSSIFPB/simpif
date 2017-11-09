@@ -44,7 +44,9 @@ public class SearchPresenterImp implements SearchMVP.Presenter{
     public void onClickAttendee(final Attendee attendee) {
         if(attendee.hasArrived()) {
             view.showMessage(getContext().getString(R.string.already_checked));
-        } else {
+        }else if(attendee.isCancelled()){
+            view.showMessage(getContext().getString(R.string.attendee_cancelled));
+        }else{
             final String code = Integer.toString(attendee.getPrivateRefNum());
             DialogInterface.OnClickListener neutral = new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {

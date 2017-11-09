@@ -47,15 +47,18 @@ public class HomeModelImp implements HomeMVP.Model {
 
         String key = getAccessKeyOnSharedPreferences(presenter.getContext());
 
-        Call<Void> call = ConnectionServer.getInstance().getService().checkin("Basic " + key, code);
+        Call<String> call = ConnectionServer.getInstance().getService().checkin("Basic " + key, code);
 
-        call.enqueue(new Callback<Void>() {
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Response<Void> response, Retrofit retrofit) {
+            public void onResponse(Response<String> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    presenter.onSendSucess();
+                    if(response.code() == 200)
+                        presenter.onSendSucess();
+                    else
+                        presenter.onSendError(response.body());
                 } else{
-                    presenter.onSendError(presenter.getContext().getString(R.string.on_code_error));
+                    presenter.onSendError(response.body());
                 }
 
             }
