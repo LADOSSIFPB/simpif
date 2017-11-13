@@ -17,7 +17,7 @@ import br.edu.ladoss.simpifladoss.view.activities.HomeActivity;
 
 public class LoginPresenterImp implements LoginMVP.Presenter {
 
-    private LoginMVP.View view;
+    private transient LoginMVP.View view;
     private LoginMVP.Model model;
 
     public LoginPresenterImp(LoginMVP.View view) {

@@ -5,31 +5,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ladoss.simpifladoss.R;
-import br.edu.ladoss.simpifladoss.models.Attendee;
+import br.edu.ladoss.simpifladoss.models.Evento;
 import br.edu.ladoss.simpifladoss.view.callback.RecycleButtonClicked;
 
 /**
- * Created by Rennan on 04/10/17.
+ * Created by Rennan on 13/11/17.
  */
 
-public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomViewHolder>{
+public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.RoomViewHolder>{
 
-    private List<Attendee> attendees;
+    private List<Evento> eventos;
     private LayoutInflater inflater;
-    private RecycleButtonClicked<Attendee> view;
+    private RecycleButtonClicked<Evento> view;
 
-    public AttendeeAdapter(Context context, List<Attendee> myList, RecycleButtonClicked view) {
+    public EventoAdapter(Context context, List<Evento> myList, RecycleButtonClicked view) {
         if (myList == null) {
-            this.attendees = new ArrayList<>();
+            this.eventos = new ArrayList<>();
         } else {
-            this.attendees = myList;
+            this.eventos = myList;
         }
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.view = view;
@@ -37,16 +37,16 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomVi
 
     @Override
     public RoomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = inflater.inflate(R.layout.item_attendee, parent, false);
+        View v = inflater.inflate(R.layout.item_event, parent, false);
         RoomViewHolder roomViewHolder = new RoomViewHolder(v);
 
         return roomViewHolder;
     }
 
     public void removeAll() {
-        int tam = attendees.size();
+        int tam = eventos.size();
         for (int i = tam - 1; i >= 0; i--) {
-            attendees.remove(i);
+            eventos.remove(i);
         }
         if (tam > 0)
             notifyItemRangeRemoved(0, tam);
@@ -54,32 +54,32 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomVi
 
     @Override
     public void onBindViewHolder(RoomViewHolder holder, int position) {
-        holder.nome.setText(attendees.get(position).getFirstName() + " " + attendees.get(position).getLastName());
-        holder.ticketTitle.setText(attendees.get(position).getTicketTitle());
-        if(attendees.get(position).hasArrived())
-            holder.checked.setChecked(true);
+        SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+        holder.nome.setText(eventos.get(position).getNome());
+        holder.inicio.setText("Começa em: " + dt.format(eventos.get(position).getInicio()));
+        holder.fim.setText("Termina em: " + dt.format(eventos.get(position).getFim()));
     }
 
     @Override
     public int getItemCount() {
-        return attendees.size();
+        return eventos.size();
     }
 
     public class RoomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView nome, ticketTitle;
-        CheckBox checked;
+        TextView nome, inicio, fim;
 
         public RoomViewHolder(View item) {
             super(item);
-            nome = (TextView) item.findViewById(R.id.opcaoDia);
-            ticketTitle = (TextView) item.findViewById(R.id.ticketTitle);
-            checked = (CheckBox) item.findViewById(R.id.checked);
+            nome = (TextView) item.findViewById(R.id.nomeEvento);
+            inicio = (TextView) item.findViewById(R.id.inicioEvento);
+            fim = (TextView) item.findViewById(R.id.fimEvento);
             item.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            view.onClickCallback(attendees.get(getAdapterPosition()));
+            view.onClickCallback(eventos.get(getAdapterPosition()));
         }
     }
 

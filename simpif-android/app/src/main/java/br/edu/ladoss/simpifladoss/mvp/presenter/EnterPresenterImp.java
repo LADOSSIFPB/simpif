@@ -15,7 +15,7 @@ import br.edu.ladoss.simpifladoss.validation.Validate;
 public class EnterPresenterImp implements EnterMVP.Presenter {
 
     private EnterMVP.Model model;
-    private EnterMVP.View view;
+    private transient EnterMVP.View view;
 
     public EnterPresenterImp(EnterMVP.View view) {
         this.view = view;

@@ -20,7 +20,7 @@ import retrofit.Retrofit;
 
 public class LoginModelImp implements LoginMVP.Model {
 
-    private LoginMVP.Presenter presenter;
+    private transient LoginMVP.Presenter presenter;
 
     public LoginModelImp(LoginMVP.Presenter presenter) {
         this.presenter = presenter;

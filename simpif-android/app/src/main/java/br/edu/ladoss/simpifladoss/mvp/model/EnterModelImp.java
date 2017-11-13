@@ -13,7 +13,7 @@ import br.edu.ladoss.simpifladoss.view.activities.LoginActivity;
 
 public class EnterModelImp implements EnterMVP.Model {
 
-    private EnterMVP.Presenter presenter;
+    private transient EnterMVP.Presenter presenter;
 
     @Override
     public void login(User user) {

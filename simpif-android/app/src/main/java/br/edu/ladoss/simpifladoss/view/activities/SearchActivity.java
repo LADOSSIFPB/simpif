@@ -88,7 +88,6 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
             }
         });
 
-
     }
 
     @Override

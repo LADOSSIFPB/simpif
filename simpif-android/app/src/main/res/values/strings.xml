@@ -32,4 +32,6 @@
     <string name="ladoss">Laboratório de Desenvolvimento de Software e Startups</string>
     <string name="policy">Política de privacidade</string>
     <string name="attendee_cancelled">Esta inscrição foi cancelada.</string>
+    <string name="no_events">Não há eventos disponívels.</string>
+    <string name="cronograma">Cronograma</string>
 </resources>

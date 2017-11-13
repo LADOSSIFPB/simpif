@@ -21,7 +21,7 @@ import butterknife.OnClick;
 
 public class SearchPresenterImp implements SearchMVP.Presenter{
 
-    private SearchMVP.View view;
+    private transient SearchMVP.View view;
     private SearchMVP.Model model;
 
     public SearchPresenterImp(SearchMVP.View view) {

@@ -42,7 +42,9 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".view.activities.AboutActivity"></activity>
+        <activity android:name=".view.activities.AboutActivity" />
+        <activity android:name=".view.activities.EventosActivity" />
+        <activity android:name=".view.activities.EventoOptionsActivity"></activity>
     </application>
 
 </manifest>

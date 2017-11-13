@@ -3,6 +3,7 @@ package br.edu.ladoss.simpifladoss.network;
 import java.util.List;
 
 import br.edu.ladoss.simpifladoss.models.Attendee;
+import br.edu.ladoss.simpifladoss.models.Evento;
 import br.edu.ladoss.simpifladoss.models.Order;
 import br.edu.ladoss.simpifladoss.models.User;
 import retrofit.Call;
@@ -14,16 +15,19 @@ import retrofit.http.Path;
 
 public interface APIService {
 
-    @GET("checkin/attendees/{codigo}")
+    @GET("attendize/api/checkin/attendees/{codigo}")
     Call<String> checkin(@Header("Authorization") String accessKey, @Path("codigo") String codigo);
 
-    @GET("checkin/orders")
+    @GET("attendize/api/checkin/orders")
     Call<List<Order>> orders(@Header("Authorization") String accessKey);
 
-    @GET("checkin/orders/references/{orderReference}")
+    @GET("attendize/api/checkin/orders/references/{orderReference}")
     Call<List<Attendee>> order(@Header("Authorization") String accessKey, @Path("orderReference") String orderRef);
 
-    @POST("checkin/login")
+    @POST("attendize/api/checkin/login")
     Call<String> login(@Body User user);
+
+    @GET("checkin/api/eventos")
+    Call<List<Evento>> eventos();
 
 }

@@ -1,6 +1,7 @@
 package br.edu.ladoss.simpifladoss.view.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,6 +43,11 @@ public class EnterActivity extends AppCompatActivity implements EnterMVP.View{
 
             setInvalidPassword();
         }
+    }
+
+    @OnClick(R.id.cronogramaButton)
+    public void onClickCronogramas() {
+        startActivity(new Intent(this, EventosActivity.class));
     }
 
     @OnClick(R.id.loginButton)

@@ -26,7 +26,7 @@ import static br.edu.ladoss.simpifladoss.util.PreferencesUtils.*;
 
 public class SearchModelImp implements SearchMVP.Model{
 
-    private SearchMVP.Presenter presenter;
+    private transient SearchMVP.Presenter presenter;
 
     public SearchModelImp(SearchMVP.Presenter presenter) {
         this.presenter = presenter;
