@@ -44,7 +44,7 @@
         </activity>
         <activity android:name=".view.activities.AboutActivity" />
         <activity android:name=".view.activities.EventosActivity" />
-        <activity android:name=".view.activities.EventoOptionsActivity"></activity>
+        <activity android:name=".view.activities.EventoApresentacoesActivity"></activity>
     </application>
 
 </manifest>

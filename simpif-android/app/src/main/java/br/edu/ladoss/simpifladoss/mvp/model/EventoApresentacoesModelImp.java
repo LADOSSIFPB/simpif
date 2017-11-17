@@ -1,14 +1,13 @@
 package br.edu.ladoss.simpifladoss.mvp.model;
 
-import android.content.Intent;
-
 import java.util.List;
 
 import br.edu.ladoss.simpifladoss.R;
+import br.edu.ladoss.simpifladoss.models.Apresentacao;
+import br.edu.ladoss.simpifladoss.models.Cronograma;
 import br.edu.ladoss.simpifladoss.models.Evento;
-import br.edu.ladoss.simpifladoss.mvp.EventosMVP;
+import br.edu.ladoss.simpifladoss.mvp.EventoApresentacoesMVP;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
-import br.edu.ladoss.simpifladoss.view.activities.EventoApresentacoesActivity;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -18,29 +17,29 @@ import retrofit.Retrofit;
  * Created by Rennan on 13/11/17.
  */
 
-public class EventosModelImp implements EventosMVP.Model{
+public class EventoApresentacoesModelImp implements EventoApresentacoesMVP.Model{
 
-    private transient EventosMVP.Presenter presenter;
+    private transient EventoApresentacoesMVP.Presenter presenter;
 
-    public EventosModelImp(EventosMVP.Presenter presenter) {
+    public EventoApresentacoesModelImp(EventoApresentacoesMVP.Presenter presenter) {
         this.presenter = presenter;
     }
 
     @Override
-    public void requestEvents() {
+    public void requestApresentacoes(Evento evento) {
         ConnectionServer.getInstance().updateServiceAdress();
 
-        Call<List<Evento>> call = ConnectionServer.getInstance().getService().eventos();
+        Call<List<Apresentacao>> call = ConnectionServer.getInstance().getService().apresentacoes(evento.getId());
 
-        call.enqueue(new Callback<List<Evento>>() {
+        call.enqueue(new Callback<List<Apresentacao>>() {
             @Override
-            public void onResponse(Response<List<Evento>> response, Retrofit retrofit) {
+            public void onResponse(Response<List<Apresentacao>> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
                     if(!response.body().isEmpty()) {
                         presenter.onSendSuccess(response.body());
                     }
                     else
-                        presenter.onSendError(presenter.getContext().getString(R.string.no_events));
+                        presenter.onSendError(presenter.getContext().getString(R.string.no_presentations));
                 }else
                     presenter.onSendError(presenter.getContext().getString(R.string.fail_connect_server));
             }
@@ -50,15 +49,6 @@ public class EventosModelImp implements EventosMVP.Model{
                 presenter.onSendError(presenter.getContext().getString(R.string.fail_connect_server));
             }
         });
-    }
-
-    @Override
-    public void redirectToEventOptions(Evento evento) {
-        Intent intent = new Intent(presenter.getContext(), EventoApresentacoesActivity.class);
-
-        intent.putExtra(Evento.BUNDLE, evento);
-
-        presenter.getContext().startActivity(intent);
     }
 
     @Override

@@ -2,7 +2,9 @@ package br.edu.ladoss.simpifladoss.network;
 
 import java.util.List;
 
+import br.edu.ladoss.simpifladoss.models.Apresentacao;
 import br.edu.ladoss.simpifladoss.models.Attendee;
+import br.edu.ladoss.simpifladoss.models.Cronograma;
 import br.edu.ladoss.simpifladoss.models.Evento;
 import br.edu.ladoss.simpifladoss.models.Order;
 import br.edu.ladoss.simpifladoss.models.User;
@@ -30,4 +32,6 @@ public interface APIService {
     @GET("checkin/api/eventos")
     Call<List<Evento>> eventos();
 
+    @GET("checkin/api/eventos/{id}/apresentacoes")
+    Call<List<Apresentacao>> apresentacoes(@Path("id") int idEvento);
 }

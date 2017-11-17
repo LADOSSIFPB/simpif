@@ -54,11 +54,10 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.RoomViewHo
 
     @Override
     public void onBindViewHolder(RoomViewHolder holder, int position) {
-        SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
 
         holder.nome.setText(eventos.get(position).getNome());
-        holder.inicio.setText("Começa em: " + dt.format(eventos.get(position).getInicio()));
-        holder.fim.setText("Termina em: " + dt.format(eventos.get(position).getFim()));
+        holder.periodo.setText("De " + dt.format(eventos.get(position).getInicio()) + " até " + dt.format(eventos.get(position).getFim()));
     }
 
     @Override
@@ -67,13 +66,12 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.RoomViewHo
     }
 
     public class RoomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView nome, inicio, fim;
+        TextView nome, periodo;
 
         public RoomViewHolder(View item) {
             super(item);
             nome = (TextView) item.findViewById(R.id.nomeEvento);
-            inicio = (TextView) item.findViewById(R.id.inicioEvento);
-            fim = (TextView) item.findViewById(R.id.fimEvento);
+            periodo = (TextView) item.findViewById(R.id.inicioEvento);
             item.setOnClickListener(this);
         }
 

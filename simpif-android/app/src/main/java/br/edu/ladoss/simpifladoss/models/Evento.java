@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Evento implements Serializable{
 
-    public static final String BUNDLE = "eventoBundle";
+    public static final transient String BUNDLE = "eventoBundle";
 
     private int id;
     private String nome;

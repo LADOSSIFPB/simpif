@@ -33,5 +33,6 @@
     <string name="policy">Política de privacidade</string>
     <string name="attendee_cancelled">Esta inscrição foi cancelada.</string>
     <string name="no_events">Não há eventos disponívels.</string>
-    <string name="cronograma">Cronograma</string>
+    <string name="cronograma">Eventos</string>
+    <string name="no_presentations">Não há apresentações disponíveis.</string>
 </resources>
