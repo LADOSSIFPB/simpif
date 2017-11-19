@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 
 import br.edu.ladoss.simpifladoss.R;
@@ -21,6 +22,8 @@ public class AboutActivity extends AppCompatActivity implements RecycleButtonCli
 
         RecyclerView recyclerView = findViewById(R.id.contribuitors);
         ContribuitionAdapter adapter = new ContribuitionAdapter(this, this);
+        LinearSnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }

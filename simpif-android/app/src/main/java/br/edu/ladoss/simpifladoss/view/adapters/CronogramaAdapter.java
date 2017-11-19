@@ -44,7 +44,7 @@ public class CronogramaAdapter extends RecyclerView.Adapter<CronogramaAdapter.Cr
             if (hashtable.containsKey(apresentacao.getCronograma())){
                 hashtable.get(apresentacao.getCronograma()).add(apresentacao);
             } else {
-                LinkedList<Apresentacao> list = new LinkedList<Apresentacao>();
+                LinkedList<Apresentacao> list = new LinkedList<>();
                 list.add(apresentacao);
                 hashtable.put(apresentacao.getCronograma(), list);
             }
@@ -78,14 +78,14 @@ public class CronogramaAdapter extends RecyclerView.Adapter<CronogramaAdapter.Cr
         return listCrono.size();
     }
 
-    public class CronogramaViewHolder extends RecyclerView.ViewHolder {
+    class CronogramaViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         RecyclerView list_presentations;
 
-        public CronogramaViewHolder(View item) {
+        CronogramaViewHolder(View item) {
             super(item);
-            name = (TextView) item.findViewById(R.id.name_field);
-            list_presentations = (RecyclerView) item.findViewById(R.id.crono_list);
+            name = item.findViewById(R.id.name_field);
+            list_presentations = item.findViewById(R.id.crono_list);
             LinearSnapHelper snapHelper = new LinearSnapHelper();
             snapHelper.attachToRecyclerView(list_presentations);
             list_presentations.setLayoutManager(
