@@ -5,11 +5,10 @@ package br.edu.ladoss.simpifladoss.models;
  */
 
 public class Autor {
-
-    public String nome;
-    public Integer id;
-    public Boolean isDeleted;
-    public String email;
+    private String nome;
+    private Integer id;
+    private Boolean isDeleted;
+    private String email;
 
     public Autor(String nome, Integer id, Boolean isDeleted, String email) {
         super();

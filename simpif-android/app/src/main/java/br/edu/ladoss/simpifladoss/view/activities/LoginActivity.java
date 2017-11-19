@@ -11,13 +11,9 @@ import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.exception.FormLoginException;
 import br.edu.ladoss.simpifladoss.mvp.LoginMVP;
 import br.edu.ladoss.simpifladoss.mvp.presenter.LoginPresenterImp;
-import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginMVP.View{
-
-    private final int TIME_ANIMATION = 5;
-    private LoginMVP.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +24,7 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View{
         startAnimation(findViewById(R.id.logo_ladoss));
         startAnimation(findViewById(R.id.logo_if));
 
-        //Por que está sendo setado isso aqui?
-        PreferencesUtils.setAccessKeyOnSharedPreferences(getContext(), "");
-
-        presenter = new LoginPresenterImp(this);
+        LoginMVP.Presenter presenter = new LoginPresenterImp(this);
         presenter.doLogin(getIntent().getExtras());
     }
 

@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import br.edu.ladoss.simpifladoss.R;
-import br.edu.ladoss.simpifladoss.models.Attendee;
 import br.edu.ladoss.simpifladoss.models.Contribuitor;
 import br.edu.ladoss.simpifladoss.view.adapters.ContribuitionAdapter;
 import br.edu.ladoss.simpifladoss.view.callback.RecycleButtonClicked;
@@ -20,7 +19,7 @@ public class AboutActivity extends AppCompatActivity implements RecycleButtonCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.contribuitors);
+        RecyclerView recyclerView = findViewById(R.id.contribuitors);
         ContribuitionAdapter adapter = new ContribuitionAdapter(this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

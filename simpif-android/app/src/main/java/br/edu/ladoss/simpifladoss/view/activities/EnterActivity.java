@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 
 import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.models.User;
 import br.edu.ladoss.simpifladoss.mvp.EnterMVP;
 import br.edu.ladoss.simpifladoss.mvp.presenter.EnterPresenterImp;
-import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
-import br.edu.ladoss.simpifladoss.validation.Validate;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

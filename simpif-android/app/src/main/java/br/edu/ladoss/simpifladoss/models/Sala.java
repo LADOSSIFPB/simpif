@@ -8,13 +8,11 @@ public class Sala {
 
     public String nome;
     public String descricao;
-    public String cor;
 
-    public Sala(String nome, String descricao, String cor) {
+    public Sala(String nome, String descricao) {
         super();
         this.nome = nome;
         this.descricao = descricao;
-        this.cor = cor;
     }
 
     public String getNome() {
@@ -23,10 +21,6 @@ public class Sala {
 
     public String getDescricao() {
         return descricao;
-    }
-
-    public String getCor() {
-        return cor;
     }
 
 }

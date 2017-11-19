@@ -47,9 +47,12 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
-        search.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        search.setQueryHint(getContext().getString(R.string.search));
-        search.onActionViewExpanded();
+        if (searchManager != null) {
+            search.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            search.setQueryHint(getContext().getString(R.string.search));
+            search.onActionViewExpanded();
+        }
+
     }
 
     @Override
@@ -109,7 +112,6 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
     public void handleSearch(Intent intent){
         if(Intent.ACTION_SEARCH.equalsIgnoreCase(intent.getAction())){
             String query = intent.getStringExtra(SearchManager.QUERY);
-            CharSequence cs = query;
             search.setQuery(query, false);
             presenter.requestOrderAttendees(query);
         }
@@ -122,7 +124,7 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
 
     @Override
     public Context getAppContext() {
-        return this.getAppContext();
+        return super.getApplicationContext();
     }
 
     @Override

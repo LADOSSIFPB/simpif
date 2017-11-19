@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class ApresentacaoAdapter extends RecyclerView.Adapter<ApresentacaoAdapte
     private List<Apresentacao> apresentacoes;
     private LayoutInflater inflater;
 
-    public ApresentacaoAdapter(Context context, List<Apresentacao> myList) {
+    ApresentacaoAdapter(Context context, List<Apresentacao> myList) {
         if (myList == null) {
             this.apresentacoes = new ArrayList<>();
         } else {
@@ -40,18 +41,8 @@ public class ApresentacaoAdapter extends RecyclerView.Adapter<ApresentacaoAdapte
     @Override
     public RoomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = inflater.inflate(R.layout.item_apresentacao, parent, false);
-        RoomViewHolder roomViewHolder = new RoomViewHolder(v);
 
-        return roomViewHolder;
-    }
-
-    public void removeAll() {
-        int tam = apresentacoes.size();
-        for (int i = tam - 1; i >= 0; i--) {
-            apresentacoes.remove(i);
-        }
-        if (tam > 0)
-            notifyItemRangeRemoved(0, tam);
+        return new RoomViewHolder(v);
     }
 
     @Override
@@ -60,12 +51,12 @@ public class ApresentacaoAdapter extends RecyclerView.Adapter<ApresentacaoAdapte
         holder.titulo.setText(apresentacoes.get(position).getTitulo());
         holder.autor.setText((apresentacao.getAutores().size() > 0 ? apresentacao.getAutores().get(0).getNome() : "Sem Autor"));
         holder.trilha.setText(apresentacao.getTrilha().getNome());
-        holder.local.setText("Sala: " + (apresentacao.getSala() != null ? apresentacao.getSala().getNome(): "Sem Sala"));
+        holder.local.setText("Sala: " + (apresentacao.getSala() != null ? apresentacao.getSala().getNome() : "Sem Sala"));
         try {
             DateFormat formatter = new SimpleDateFormat("HH:mm");
             Date inicio = (Date)formatter.parse(apresentacao.getHoraInicio());
             Date fim = (Date)formatter.parse(apresentacao.getHoraFim());
-            holder.periodo.setText(formatter.format(inicio) + " - " + formatter.format(fim));
+            holder.periodo.setText(MessageFormat.format("{0} - {1}", formatter.format(inicio), formatter.format(fim)));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -77,21 +68,16 @@ public class ApresentacaoAdapter extends RecyclerView.Adapter<ApresentacaoAdapte
         return apresentacoes.size();
     }
 
-    public class RoomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class RoomViewHolder extends RecyclerView.ViewHolder {
         TextView titulo, autor, trilha, local, periodo;
 
-        public RoomViewHolder(View item) {
+        RoomViewHolder(View item) {
             super(item);
-            titulo = (TextView) item.findViewById(R.id.tituloApresentacao);
-            autor = (TextView) item.findViewById(R.id.autor);
-            trilha = (TextView) item.findViewById(R.id.trilha);
-            local = (TextView) item.findViewById(R.id.local);
-            periodo = (TextView) item.findViewById(R.id.periodo);
-            item.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
+            titulo = item.findViewById(R.id.tituloApresentacao);
+            autor = item.findViewById(R.id.autor);
+            trilha = item.findViewById(R.id.trilha);
+            local = item.findViewById(R.id.local);
+            periodo = item.findViewById(R.id.periodo);
         }
     }
 

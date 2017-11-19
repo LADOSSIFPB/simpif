@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomVi
     private LayoutInflater inflater;
     private RecycleButtonClicked<Attendee> view;
 
-    public AttendeeAdapter(Context context, List<Attendee> myList, RecycleButtonClicked view) {
+    public AttendeeAdapter(Context context, List<Attendee> myList, RecycleButtonClicked<Attendee> view) {
         if (myList == null) {
             this.attendees = new ArrayList<>();
         } else {
@@ -38,23 +39,13 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomVi
     @Override
     public RoomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = inflater.inflate(R.layout.item_attendee, parent, false);
-        RoomViewHolder roomViewHolder = new RoomViewHolder(v);
 
-        return roomViewHolder;
-    }
-
-    public void removeAll() {
-        int tam = attendees.size();
-        for (int i = tam - 1; i >= 0; i--) {
-            attendees.remove(i);
-        }
-        if (tam > 0)
-            notifyItemRangeRemoved(0, tam);
+        return new RoomViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(RoomViewHolder holder, int position) {
-        holder.nome.setText(attendees.get(position).getFirstName() + " " + attendees.get(position).getLastName());
+        holder.nome.setText(MessageFormat.format("{0} {1}", attendees.get(position).getFirstName(), attendees.get(position).getLastName()));
         holder.ticketTitle.setText(attendees.get(position).getTicketTitle());
         if(attendees.get(position).hasArrived())
             holder.checked.setChecked(true);
@@ -69,11 +60,11 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.RoomVi
         TextView nome, ticketTitle;
         CheckBox checked;
 
-        public RoomViewHolder(View item) {
+        RoomViewHolder(View item) {
             super(item);
-            nome = (TextView) item.findViewById(R.id.opcaoDia);
-            ticketTitle = (TextView) item.findViewById(R.id.ticketTitle);
-            checked = (CheckBox) item.findViewById(R.id.checked);
+            nome = item.findViewById(R.id.opcaoDia);
+            ticketTitle = item.findViewById(R.id.ticketTitle);
+            checked = item.findViewById(R.id.checked);
             item.setOnClickListener(this);
         }
 

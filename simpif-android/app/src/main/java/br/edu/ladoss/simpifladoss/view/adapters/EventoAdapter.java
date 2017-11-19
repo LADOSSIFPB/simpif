@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +39,8 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.RoomViewHo
     @Override
     public RoomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = inflater.inflate(R.layout.item_event, parent, false);
-        RoomViewHolder roomViewHolder = new RoomViewHolder(v);
 
-        return roomViewHolder;
+        return new RoomViewHolder(v);
     }
 
     public void removeAll() {
@@ -56,8 +56,9 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.RoomViewHo
     public void onBindViewHolder(RoomViewHolder holder, int position) {
         SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
 
-        holder.nome.setText(eventos.get(position).getNome());
-        holder.periodo.setText("De " + dt.format(eventos.get(position).getInicio()) + " até " + dt.format(eventos.get(position).getFim()));
+        Evento evento = eventos.get(position);
+        holder.nome.setText(evento.getNome());
+        holder.periodo.setText(MessageFormat.format("De {0} até {1}", dt.format(evento.getInicio()), dt.format(evento.getFim())));
     }
 
     @Override

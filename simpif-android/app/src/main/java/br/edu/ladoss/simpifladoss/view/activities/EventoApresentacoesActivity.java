@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -17,7 +16,6 @@ import br.edu.ladoss.simpifladoss.models.Apresentacao;
 import br.edu.ladoss.simpifladoss.models.Evento;
 import br.edu.ladoss.simpifladoss.mvp.EventoApresentacoesMVP;
 import br.edu.ladoss.simpifladoss.mvp.presenter.EventoApresentacoesPresenterImp;
-import br.edu.ladoss.simpifladoss.view.adapters.ApresentacaoAdapter;
 import br.edu.ladoss.simpifladoss.view.adapters.CronogramaAdapter;
 import butterknife.BindView;
 
@@ -27,8 +25,6 @@ public class EventoApresentacoesActivity extends AppCompatActivity implements Ev
 
     @BindView(R.id.recyclerApresentacao)
     RecyclerView recycler;
-
-    private EventoApresentacoesMVP.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +40,7 @@ public class EventoApresentacoesActivity extends AppCompatActivity implements Ev
             }
         }
 
-        this.presenter = new EventoApresentacoesPresenterImp(this);
+        EventoApresentacoesMVP.Presenter presenter = new EventoApresentacoesPresenterImp(this);
 
         presenter.requestApresentacoes(evento);
 
@@ -55,7 +51,7 @@ public class EventoApresentacoesActivity extends AppCompatActivity implements Ev
         LinearLayoutManager gridLayoutManager = new LinearLayoutManager(getContext());
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        recycler = (RecyclerView) findViewById(R.id.recyclerApresentacao);
+        recycler = findViewById(R.id.recyclerApresentacao);
 
         LinearSnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recycler);

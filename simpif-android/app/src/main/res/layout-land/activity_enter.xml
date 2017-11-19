@@ -55,13 +55,11 @@
                         android:autoText="true"
                         android:background="@drawable/edit_text_white_top"
                         android:hint="E-mail"
-                        android:imeActionId="@+id/login"
                         android:imeOptions="actionNext|actionUnspecified"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:padding="15dp"
                         android:singleLine="true"
-                        android:textAppearance="@android:style/TextAppearance.Material.Widget.EditText"
                         android:textColorHint="@color/gelo" />
 
                     <EditText
@@ -73,39 +71,44 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edit_text_white_bottom"
                         android:hint="Senha"
-                        android:imeActionId="@+id/login"
                         android:imeOptions="actionUnspecified"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="15dp"
                         android:singleLine="true"
-                        android:textAppearance="@android:style/TextAppearance.Material.Widget.EditText"
                         android:textColorHint="@color/gelo" />
 
-                    <Button
-                        android:id="@+id/loginButton"
-                        style="@style/button"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:onClick="doLogin"
-                        android:text="Login"
-                        android:textStyle="bold"
-                        android:translationZ="3dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"/>
-
-                    <Button
-                        android:id="@+id/cronogramaButton"
-                        style="@style/button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
-                        android:layout_marginTop="40dp"
-                        android:text="@string/cronograma"
-                        android:textStyle="bold"
-                        android:translationZ="3dp" />
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/loginButton"
+                            style="@style/button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="1"
+                            android:text="Login"
+                            android:textStyle="bold"
+                            android:translationZ="3dp" />
+
+                        <Button
+                            android:id="@+id/cronogramaButton"
+                            style="@style/button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_weight="1"
+                            android:text="@string/cronograma"
+                            android:textStyle="bold"
+                            android:translationZ="3dp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
             </ScrollView>
