@@ -1,56 +1,41 @@
 package br.edu.ladoss.simpifladoss.models;
 
+import android.support.annotation.NonNull;
+
 import java.util.Date;
 
 /**
  * Created by Rennan on 13/11/17.
  */
 
-public class Cronograma {
-
-    private int id;
+public class Cronograma implements Comparable<Cronograma>{
     private String nome;
-    private Evento evento;
-    private boolean isDeleted;
-    private Date dataRealizacao;
-    private String horaInicio;
-    private String horaFim;
 
-    public Cronograma(int id, String nome, Evento evento, boolean isDeleted, Date dataRealizacao, String horaInicio, String horaFim) {
-        this.id = id;
+    public Cronograma(String nome) {
         this.nome = nome;
-        this.evento = evento;
-        this.isDeleted = isDeleted;
-        this.dataRealizacao = dataRealizacao;
-        this.horaInicio = horaInicio;
-        this.horaFim = horaFim;
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cronograma that = (Cronograma) o;
+
+        return nome != null ? nome.equals(that.nome) : that.nome == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return nome != null ? nome.hashCode() : 0;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public Date getDataRealizacao() {
-        return dataRealizacao;
-    }
-
-    public String getHoraInicio() {
-        return horaInicio;
-    }
-
-    public String getHoraFim() {
-        return horaFim;
+    @Override
+    public int compareTo(@NonNull Cronograma o) {
+        return nome.compareTo(o.getNome());
     }
 }

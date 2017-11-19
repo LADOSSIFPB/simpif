@@ -5,7 +5,6 @@ import android.content.Context;
 import java.util.List;
 
 import br.edu.ladoss.simpifladoss.models.Apresentacao;
-import br.edu.ladoss.simpifladoss.models.Cronograma;
 import br.edu.ladoss.simpifladoss.models.Evento;
 import br.edu.ladoss.simpifladoss.mvp.EventoApresentacoesMVP;
 import br.edu.ladoss.simpifladoss.mvp.model.EventoApresentacoesModelImp;
@@ -31,7 +30,7 @@ public class EventoApresentacoesPresenterImp implements EventoApresentacoesMVP.P
 
     @Override
     public void onSendSuccess(List<Apresentacao> apresentacoes) {
-        view.updateApresentacoes(apresentacoes);
+        view.updateCronogramas(apresentacoes);
     }
 
     @Override

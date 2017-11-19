@@ -7,14 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import br.edu.ladoss.simpifladoss.R;
 import br.edu.ladoss.simpifladoss.models.Apresentacao;
-import br.edu.ladoss.simpifladoss.models.Cronograma;
-import br.edu.ladoss.simpifladoss.view.callback.RecycleButtonClicked;
 
 /**
  * Created by Rennan on 17/11/17.
@@ -31,6 +33,7 @@ public class ApresentacaoAdapter extends RecyclerView.Adapter<ApresentacaoAdapte
         } else {
             this.apresentacoes = myList;
         }
+        Collections.sort(apresentacoes);
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -53,12 +56,20 @@ public class ApresentacaoAdapter extends RecyclerView.Adapter<ApresentacaoAdapte
 
     @Override
     public void onBindViewHolder(RoomViewHolder holder, int position) {
-
+        Apresentacao apresentacao = apresentacoes.get(position);
         holder.titulo.setText(apresentacoes.get(position).getTitulo());
-        holder.autor.setText("Autor: " + apresentacoes.get(position).getAutores().get(0).getNome());
-        holder.trilha.setText(apresentacoes.get(position).getTrilha().getNome());
-        holder.local.setText("Sala: " + apresentacoes.get(position).getSala().getNome());
-        holder.periodo.setText(apresentacoes.get(position).getCronograma().getNome() + ": " + apresentacoes.get(position).getHoraInicio() + " - " + apresentacoes.get(position).getHoraFim());
+        holder.autor.setText((apresentacao.getAutores().size() > 0 ? apresentacao.getAutores().get(0).getNome() : "Sem Autor"));
+        holder.trilha.setText(apresentacao.getTrilha().getNome());
+        holder.local.setText("Sala: " + (apresentacao.getSala() != null ? apresentacao.getSala().getNome(): "Sem Sala"));
+        try {
+            DateFormat formatter = new SimpleDateFormat("HH:mm");
+            Date inicio = (Date)formatter.parse(apresentacao.getHoraInicio());
+            Date fim = (Date)formatter.parse(apresentacao.getHoraFim());
+            holder.periodo.setText(formatter.format(inicio) + " - " + formatter.format(fim));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

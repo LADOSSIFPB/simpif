@@ -7,32 +7,18 @@ package br.edu.ladoss.simpifladoss.models;
 public class Sala {
 
     public String nome;
-    public Boolean isDeleted;
-    public Integer id;
     public String descricao;
     public String cor;
-    public Integer capacidade;
 
-    public Sala(String nome, Boolean isDeleted, Integer id, String descricao, String cor, Integer capacidade) {
+    public Sala(String nome, String descricao, String cor) {
         super();
         this.nome = nome;
-        this.isDeleted = isDeleted;
-        this.id = id;
         this.descricao = descricao;
         this.cor = cor;
-        this.capacidade = capacidade;
     }
 
     public String getNome() {
         return nome;
-    }
-
-    public Boolean getDeleted() {
-        return isDeleted;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getDescricao() {
@@ -43,7 +29,4 @@ public class Sala {
         return cor;
     }
 
-    public Integer getCapacidade() {
-        return capacidade;
-    }
 }

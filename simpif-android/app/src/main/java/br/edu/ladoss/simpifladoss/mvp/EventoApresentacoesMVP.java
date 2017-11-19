@@ -19,7 +19,7 @@ public interface EventoApresentacoesMVP {
 
     interface View extends MVPApp.View {
         void showMessage(String msg);
-        void updateApresentacoes(List<Apresentacao> apresentacoes);
+        void updateCronogramas(List<Apresentacao> apresentacoes);
     }
 
     interface Presenter extends MVPApp.Presenter {
