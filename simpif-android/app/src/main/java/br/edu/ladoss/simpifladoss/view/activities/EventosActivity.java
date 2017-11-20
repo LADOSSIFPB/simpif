@@ -41,6 +41,8 @@ public class EventosActivity extends AppCompatActivity implements EventosMVP.Vie
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       // getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
         this.presenter = new EventosPresenterImp(this);
 

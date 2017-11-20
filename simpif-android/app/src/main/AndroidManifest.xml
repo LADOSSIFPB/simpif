@@ -45,9 +45,11 @@
         </activity>
         <activity android:name=".view.activities.AboutActivity" />
         <activity android:name=".view.activities.EventosActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".view.activities.LoginActivity"/>
         <activity android:name=".view.activities.EventoApresentacoesActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:parentActivityName=".view.activities.EventosActivity"/>
     </application>
 
 </manifest>
