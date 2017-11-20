@@ -69,8 +69,6 @@ public class EventoApresentacoesActivity extends AppCompatActivity implements Ev
 
         recycler = findViewById(R.id.recyclerApresentacao);
 
-        LinearSnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(recycler);
         recycler.setLayoutManager(gridLayoutManager);
         recycler.setHasFixedSize(true);
         recycler.setAdapter(new CronogramaAdapter(getContext(), apresentacoes));

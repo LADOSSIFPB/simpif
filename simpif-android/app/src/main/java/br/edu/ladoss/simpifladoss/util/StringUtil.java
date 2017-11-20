@@ -44,8 +44,6 @@ public class StringUtil {
             throw new IllegalStateException("Base-64: Cannot encode with UTF-8");
         }
 
-        Log.i("teste", valor);
-
         return valor;
     }
 
