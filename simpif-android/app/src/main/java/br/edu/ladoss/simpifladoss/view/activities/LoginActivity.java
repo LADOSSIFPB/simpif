@@ -21,8 +21,8 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View{
         setContentView(R.layout.activity_splash);
 
         startAnimation(findViewById(R.id.logo_simpif));
-        startAnimation(findViewById(R.id.logo_ladoss));
-        startAnimation(findViewById(R.id.logo_if));
+       // startAnimation(findViewById(R.id.logo_ladoss));
+       // startAnimation(findViewById(R.id.logo_if));
 
         LoginMVP.Presenter presenter = new LoginPresenterImp(this);
         presenter.doLogin(getIntent().getExtras());

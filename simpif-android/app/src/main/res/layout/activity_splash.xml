@@ -6,8 +6,6 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context="br.edu.ladoss.simpifladoss.view.activities.LoginActivity">
-
-
     <ImageView
         android:id="@+id/logo_simpif"
         android:layout_width="0dp"
@@ -30,14 +28,14 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        android:contentDescription="@string/simpif" />
 
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/logo_ladoss"
         android:layout_width="0dp"
         android:layout_height="0dp"
-
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -53,12 +51,9 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ifpb_logo_branco"
-        tools:layout_conversion_absoluteHeight="209dp"
-        tools:layout_conversion_absoluteWidth="156dp"
-        tools:layout_conversion_absoluteX="0dp"
-        tools:layout_conversion_absoluteY="357dp" />
+        android:contentDescription="@string/ifpb" /-->
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/logo_if"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -76,10 +71,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ladoss_logo_branco"
-        tools:layout_conversion_absoluteHeight="143dp"
-        tools:layout_conversion_absoluteWidth="156dp"
-        tools:layout_conversion_absoluteX="180dp"
-        tools:layout_conversion_absoluteY="357dp" />
+        android:contentDescription="@string/ladoss" /-->
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

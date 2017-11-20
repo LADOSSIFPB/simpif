@@ -36,4 +36,6 @@
     <string name="cronograma">Eventos</string>
     <string name="no_presentations">Não há apresentações disponíveis.</string>
     <string name="developers">Desenvolvedores</string>
+    <string name="ifpb">Instituto Federal da Paraíba</string>
+    <string name="simpif">Simpif</string>
 </resources>
