@@ -13,6 +13,7 @@ public class Attendee {
     private int privateRefNum;
     private boolean hasArrived;
     private String arrivalTime;
+
     private boolean isCancelled;
 
     private int order_id;

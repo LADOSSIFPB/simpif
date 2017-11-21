@@ -68,18 +68,15 @@ public class SearchModelImp implements SearchMVP.Model{
 
         String key = getAccessKeyOnSharedPreferences(presenter.getContext());
 
-        Call<String> call = ConnectionServer.getInstance().getService().checkin("Basic " + key, code);
+        Call<Void> call = ConnectionServer.getInstance().getService().checkin("Basic " + key, code);
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Response<String> response, Retrofit retrofit) {
+            public void onResponse(Response<Void> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    if(response.code() == 200)
-                        presenter.onSendSucess();
-                    else
-                        presenter.onSendError(response.body());
+                    presenter.onSendSucess();
                 } else{
-                    presenter.onSendError(response.body());
+                    presenter.onSendError(presenter.getContext().getString(R.string.fail_connect_server));
                 }
 
             }

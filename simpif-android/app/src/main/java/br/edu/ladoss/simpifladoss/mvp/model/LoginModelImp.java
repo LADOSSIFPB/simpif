@@ -29,14 +29,7 @@ public class LoginModelImp implements LoginMVP.Model {
     @Override
     public void tryLoginUser(User userReferencial) {
         if (userReferencial != null){
-            String accessKey = PreferencesUtils.getAccessKeyOnSharedPreferences(presenter.getContext());
-
-            if (accessKey != null && !accessKey.isEmpty()) {
-                presenter.onSuccessLogin();
-            } else {
-                Log.d(LoginModelImp.class.getName(), "AcessKey inexistente");
-                getAccessKeyFromServer(userReferencial);
-            }
+            getAccessKeyFromServer(userReferencial);
         }
     }
 
@@ -52,7 +45,7 @@ public class LoginModelImp implements LoginMVP.Model {
                 if (response.isSuccess()) {
                     Log.i(this.getClass().getName(), " chave recuperada com sucesso");
                     PreferencesUtils.setAccessKeyOnSharedPreferences(presenter.getContext(), StringUtil.criptografarBase64(response.body() + ":unused").replace("\n", ""));
-                    tryLoginUser(user);
+                    presenter.onSuccessLogin();
                 } else {
                     Log.i(this.getClass().getName(), " a chave não foi recuperada com êxito");
                     presenter.onFailureLogin(new FormLoginException("Usuário inválido"), user);

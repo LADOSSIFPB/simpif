@@ -6,7 +6,10 @@ import android.support.v7.app.AlertDialog;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 
+import java.util.List;
+
 import br.edu.ladoss.simpifladoss.R;
+import br.edu.ladoss.simpifladoss.models.Attendee;
 import br.edu.ladoss.simpifladoss.mvp.HomeMVP;
 import br.edu.ladoss.simpifladoss.network.ConnectionServer;
 import br.edu.ladoss.simpifladoss.util.PreferencesUtils;
@@ -47,18 +50,15 @@ public class HomeModelImp implements HomeMVP.Model {
 
         String key = getAccessKeyOnSharedPreferences(presenter.getContext());
 
-        Call<String> call = ConnectionServer.getInstance().getService().checkin("Basic " + key, code);
+        Call<Void> call = ConnectionServer.getInstance().getService().checkin("Basic " + key, code);
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Response<String> response, Retrofit retrofit) {
+            public void onResponse(Response<Void> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    if(response.code() == 200)
-                        presenter.onSendSucess();
-                    else
-                        presenter.onSendError(response.body());
+                    presenter.onSendSucess();
                 } else{
-                    presenter.onSendError(response.body());
+                    presenter.onSendError(presenter.getContext().getString(R.string.fail_connect_server));
                 }
 
             }

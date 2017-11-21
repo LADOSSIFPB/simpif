@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.edu.ladoss.simpifladoss.models.Apresentacao;
 import br.edu.ladoss.simpifladoss.models.Attendee;
-import br.edu.ladoss.simpifladoss.models.Cronograma;
 import br.edu.ladoss.simpifladoss.models.Evento;
 import br.edu.ladoss.simpifladoss.models.Order;
 import br.edu.ladoss.simpifladoss.models.User;
@@ -18,7 +17,7 @@ import retrofit.http.Path;
 public interface APIService {
 
     @GET("attendize/api/checkin/attendees/{codigo}")
-    Call<String> checkin(@Header("Authorization") String accessKey, @Path("codigo") String codigo);
+    Call<Void> checkin(@Header("Authorization") String accessKey, @Path("codigo") String codigo);
 
     @GET("attendize/api/checkin/orders")
     Call<List<Order>> orders(@Header("Authorization") String accessKey);
